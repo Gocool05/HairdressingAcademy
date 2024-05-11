@@ -1,19 +1,9 @@
 import React, { useState } from "react";
 import "./gallery.css";
-// import Modal from 'react-modal';
-// import ImageGallery from 'react-image-gallery';
-// import 'react-image-gallery/styles/css/image-gallery.css';
-// import 'slick-carousel/slick/slick.css';
-// import 'slick-carousel/slick/slick-theme.css';
 import NavBar from "../../components/NavBar";
 import Footer from "../../components/Footer";
-
-
 import { Gallery } from "react-grid-gallery";
-import Lightbox from "react-image-lightbox";
-import "react-image-lightbox/style.css";
-import axios from "axios";
-import { useQuery } from "react-query";
+
 const API_URL = process.env.REACT_APP_API_URL;
 
 
