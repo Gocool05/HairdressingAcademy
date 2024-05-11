@@ -1,0 +1,79 @@
+/* Gallery.css */
+
+.main-gallery-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+  
+  .flexbox-item {
+    width: 30%; /* Adjust width as needed */
+    margin: 10px;
+  }
+  
+  .card {
+    cursor: pointer;
+  }
+  
+  .card-image {
+    width: 100%;
+    height: auto;
+    border-radius: 20px; 
+    border: 4px double #f4ce14;
+  }
+  
+  .card-title {
+    text-align: center;
+    padding: 10px;
+    font-size: 20px;
+    font-weight: bold;
+  }
+    
+  @media screen and (max-width: 768px) {
+    .flexbox-item {
+      width: 100%; /* Full width for smaller screens */
+    }
+  }
+  
+    /* Styles for the modal overlay */
+    .modal-overlay {
+      background: rgba(0, 0, 0, 0.8);
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    /* Styles for the modal container */
+    .modal-container {
+      max-width: 80%;
+      max-height: 80%;
+      overflow: hidden;
+    }
+    
+    /* Styles for the nested Image Gallery slider */
+    .image-gallery {
+      width: 100%;
+      
+    }
+    
+    .image-gallery .image-gallery-slide img {
+      width: 100%;
+      height: auto;
+    }
+    
+    /* Styles for the close button */
+    .close-button {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: none;
+      border: none;
+      color: white;
+      cursor: pointer;
+    }
+    
