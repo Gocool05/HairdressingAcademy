@@ -122,26 +122,9 @@ const Album = () => {
           <p style={{textAlign: "center",color:'#D6D6D6'}}>Frozen moments from IHF by javed khan</p>
         </div>
         <div className="px-28 py-16 mq925:p-2">
-      <Gallery
-        images={images}
-        onClick={handleClick}
-        enableImageSelection={false}
-      />
-      {!!currentImage && (
-        /* @ts-ignore */
-        <Lightbox
-          mainSrc={currentImage.original}
-          imageTitle={currentImage.caption}
-          mainSrcThumbnail={currentImage.src}
-          nextSrc={nextImage.original}
-          nextSrcThumbnail={nextImage.src}
-          prevSrc={prevImage.original}
-          prevSrcThumbnail={prevImage.src}
-          onCloseRequest={handleClose}
-          onMovePrevRequest={handleMovePrev}
-          onMoveNextRequest={handleMoveNext}
-        />
-      )}
+        <div>
+      <Gallery images={images} enableImageSelection={false} />
+    </div>
         </div>
     </div>
     <Footer/>
