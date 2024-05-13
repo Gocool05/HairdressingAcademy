@@ -7,7 +7,7 @@ import Footer from "./Footer";
 import NavBar from "./NavBar";
 const API_URL = process.env.REACT_APP_API_URL;
 const JWT = localStorage.getItem("JwtToken");
-
+// Details changed 
 const Details = () => {
   const { id } = useParams();
   const queryClient = useQueryClient();
@@ -21,6 +21,7 @@ const Details = () => {
   const [courseInCart, setCourseInCart] = useState(false);
   const [isBought, setIsBought] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [purchasedId, setPurchasedId] = useState(null);
   const userId = localStorage.getItem("UserId");
 
 
@@ -37,7 +38,7 @@ if(localStorage.getItem('redirectToCart')){
     return response.data.cart;
   };
 
-  const { data: cart, isLoading, error,refetch } = useQuery("Cart", User);
+  const { data: cart } = useQuery("Cart", User);
 
   console.log(cart, "Users details");
  
@@ -126,25 +127,24 @@ if(localStorage.getItem('redirectToCart')){
       return response.data.purchased_course.courses;
     }
   };
-  const { data: purchasedCourse } = useQuery(
+  const { data: purchasedCourse,isLoading,error } = useQuery(
     "PurchasedCourse",
     PurchasedCourse
   );
   console.log(purchasedCourse, "PurchasedCourse");
 
-  const isPurchased = async() => {
-    queryClient.invalidateQueries("PurchasedCourse");
+
+  const isPurchased = () => {
     if (
       purchasedCourse &&
       purchasedCourse.length > 0
-    ) {
-      const isPurchased = await purchasedCourse.map(
-        (course) => course.id.toString() === id.toString()
-      );
-      // setIsBought(true);
-      console.log(isPurchased, "purchasedCourse is true o rnot");
-      console.log(id,'course ID');
-      if (isPurchased) {
+      ) {
+        const isPurchase = purchasedCourse.map(course => course.id.toString() === id.toString());
+        console.log(isPurchase, "purchasedCourse is true or not");
+        console.log(id,'course ID');
+        const anyLiked = isPurchase.includes(true);
+        if (anyLiked) {
+        // queryClient.invalidateQueries("PurchasedCourse");
         setIsBought(true);
         console.log(isBought, "isBoughtCourse is true or not");
       }
@@ -152,7 +152,11 @@ if(localStorage.getItem('redirectToCart')){
       console.log("NO courses purchased");
     }
   };
-
+  
+  useEffect(() => {
+    isPurchased();
+  }, [purchasedCourse]);
+    
   const handlePlay = () => {
     if (isBought) {
       setIsPlaying(true);
@@ -169,11 +173,7 @@ if(localStorage.getItem('redirectToCart')){
     isCartEmpty();
   }, [cart]);
 
-  useEffect(() => {
-    setTimeout(()=>{
-      isPurchased();
-    },1000)
-  }, [ id]);
+ 
   if (isLoading)
     return (
       <div class="loader">
@@ -208,10 +208,12 @@ if(localStorage.getItem('redirectToCart')){
                       src={`${API_URL}${image}`}
                     />
                     {isBought ? (
+                      
                       <button
                         className="absolute rounded-[50%] p-3 bg-gray1 cursor-pointer  top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
                         onClick={handlePlay}
                       >
+                        <div>{console.log(isBought,'Isbought in play')}</div>
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           fill="none"

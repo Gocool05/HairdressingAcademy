@@ -8,26 +8,21 @@ import 'swiper/css/navigation';
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 import axios from "axios";
 import { useState } from "react";
+import { useQuery } from "react-query";
 const API_URL = process.env.REACT_APP_API_URL;
 
 
 
 const Slider = () => {
-const [slider , setSlider] = useState([]);
 const navigate = useNavigate();
-    useEffect(() => {
-        HomeSlider();
-      }, []);
-
     const HomeSlider = async() => {
-        try{
-          const response = await axios.get(`${API_URL}/api/sliders?populate=*`);
-          setSlider(response.data.data);
-          console.log(response.data.data,'slider');
-        }catch(e){
-          console.error(e);
-        }
+        const response = await axios.get(`${API_URL}/api/sliders?populate=*`);
+        return response.data.data;
       }
+      const {data:slider,isLoading,error} = useQuery('Slider',HomeSlider);
+
+      if (isLoading) return <div class="loader">Loading..<span></span></div>
+      if (error) return <div>An error occurred: {error.message}</div>;
   return (
     <Swiper 
     spaceBetween={30}
@@ -43,7 +38,7 @@ const navigate = useNavigate();
     modules={[Autoplay, Pagination, Navigation]}
     className="mySwiper"
     >
-{slider.map((slide)=>(
+{slider && slider.map((slide)=>(
     <SwiperSlide key={slide.id}>
         <div className="slide-content">
           <img src={`${API_URL}${slide.attributes.Image.data.attributes.url}`} className="kenburns-bottom" alt="Slider Image 1" />
