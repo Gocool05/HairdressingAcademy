@@ -33,8 +33,8 @@ const Footer = () => {
     <div className=" px-6 py-8 ">
         <div className="fleX flex-col items-center text-center">
             {/* <a href="#"> */}
-                {/* <img className="w-auto h-7" src="https://merakiui.com/images/full-logo.svg" alt="" /> */}
-                <h1 className='text-white my-2'>IHF by Javed khan</h1>
+                <img className="w-auto h-20" src="https://res.cloudinary.com/dx78kzenz/image/upload/v1715678858/ihf_PNG_wd48ym.png" alt="" />
+                {/* <h1 className='text-white my-2'>IHF by Javed khan</h1> */}
             {/* </a> */}
 
             <div className="flex  gap-6 justify-center mt-6 -mx-4  mq925:m-0 ">
@@ -52,7 +52,7 @@ const Footer = () => {
         <hr className="my-6 mq925:my-3 w-[90%] border-t-[1px] border-white" />
 
         <div className="flex flex-row px-20 items-center mq925:flex-col  mq925:px-1 justify-between sm:flex-row sm:justify-between">
-            <p className="text-sm  text-white">© Copyright 2021. All Rights Reserved.</p>
+            <p className="text-sm  text-white">© Copyright 2024. All Rights Reserved.</p>
 
             <div className="flex -mx-2">
             <div className="icons">

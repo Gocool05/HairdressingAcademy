@@ -9,19 +9,20 @@ import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 import axios from "axios";
 import { useState } from "react";
 import { useQuery } from "react-query";
+import SkeletonAvatar from "antd/es/skeleton/Avatar";
 const API_URL = process.env.REACT_APP_API_URL;
 
 
 
 const Slider = () => {
 const navigate = useNavigate();
+const [imgLoading,setImgLoading] = useState(true);
     const HomeSlider = async() => {
         const response = await axios.get(`${API_URL}/api/sliders?populate=*`);
         return response.data.data;
       }
       const {data:slider,isLoading,error} = useQuery('Slider',HomeSlider);
-
-      if (isLoading) return <div class="loader">Loading..<span></span></div>
+      if (isLoading) return <SkeletonAvatar active shape="square" size={30}/>
       if (error) return <div>An error occurred: {error.message}</div>;
   return (
     <Swiper 

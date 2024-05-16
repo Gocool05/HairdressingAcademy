@@ -58,10 +58,10 @@ const NavBar = () => {
 
 
   return (
-    <nav className="  flex z-10 items-center justify-evenly mq450:justify-between py-1 px-5 box-border  text-center text-4xl text-darkslategray-200 font-cormorant-garamond text-lg bg-transparent">
+    <nav className="  flex z-10 items-center justify-between mq450:justify-between py-1 px-5 box-border  text-center text-4xl text-darkslategray-200 font-cormorant-garamond text-lg bg-[#17191c]">
     <div className="flex  items-center justify-start gap-8 max-w-full">
-    <h1 className='text-white '> IHF by Javed </h1>
-      {/* <img className='h-12 w-auto' src='https://res.cloudinary.com/dx78kzenz/image/upload/v1703314037/header-logo_faxbai.png'/> */}
+    {/* <h1 className='text-white '> IHF by Javed </h1> */}
+      <img className='h-16 w-auto' src='https://res.cloudinary.com/dx78kzenz/image/upload/v1715678858/ihf_PNG_wd48ym.png'/>
     </div>
     <div className="menu menu-5 mq450:hidden flex items-center justify-center gap-8">
       {navLinks && navLinks.map((nav) => (

@@ -20,16 +20,15 @@ const Contact = () => {
             <div className='items grid2'>
               <div className='box'>
                 <h4 className="text-white">ADDRESS:</h4>
-                <p>F1, 2nd FloorLand Marvel Residential Flat Owners Association, Ashok Nagar, Chennai-600 083.</p>
+                <p>xxx yyy zzz</p>
               </div>
               <div className='box'>
                 <h4 className="text-white">EMAIL:</h4>
-                <p> brightfuturefilmtechacademy@ gmail.com</p>
+                <p> ihfbyjavedkhan.1@gmail.com</p>
               </div>
               <div className='box'>
                 <h4 className="text-white">PHONE:</h4>
-                <p>+91 93422 54626</p>
-                <p>+91 044-35773187</p>
+                <p>+91 9xxxx xxxx9</p>
               </div>
             </div>
 

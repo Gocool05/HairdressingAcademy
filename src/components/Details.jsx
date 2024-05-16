@@ -133,6 +133,15 @@ if(localStorage.getItem('redirectToCart')){
   );
   console.log(purchasedCourse, "PurchasedCourse");
 
+  const LessonPlan = async() =>{
+    const response = await axios.get(`${API_URL}/api/courses/${id}?populate[LessonPlan][populate]=*`);
+    return response.data.data.attributes.LessonPlan;
+  }
+  const { data: lessonPlan } = useQuery(
+    "LessonPlan",
+    LessonPlan
+  );
+  console.log(lessonPlan, "LessonPlan");
 
   const isPurchased = () => {
     if (
@@ -185,15 +194,15 @@ if(localStorage.getItem('redirectToCart')){
   return (
     <>
       <NavBar />
-      <div className="w-full relative  flex flex-row items-start justify-center py-0 px-5 box-border leading-[normal] tracking-[normal]">
-        <section className="w-[1320px] flex flex-col items-start justify-start gap-[44.1px] max-w-[1320px] text-left text-xl text-thelondonhairdressingacademycom-shark font-htmlbeanscom-open-sans-regular-14 mq800:gap-[22px] mq1350:max-w-full">
-          <h1 className="text-white pl-3">{course.CourseName}</h1>
+      <div className="w-full relative bg-[#D6D6D6] flex flex-row items-start justify-center py-0 px-5 box-border leading-[normal] tracking-[normal]">
+        <section className="w-[1320px] flex flex-col items-start justify-start  max-w-[1320px] text-left text-xl text-thelondonhairdressingacademycom-shark font-htmlbeanscom-open-sans-regular-14 mq800:gap-[22px] mq1350:max-w-full">
+          <h1 className="text-gray1 pl-3">{course.CourseName}</h1>
           <div className="ml-[-12px] w-[1344px] flex flex-row mq925:flex-col items-start gap-12 justify-start max-w-[102%] shrink-0 mq1150:flex-wrap">
             <div className="flex-1 flex flex-col items-start justify-start py-0 px-6 box-border  max-w-[1344px] mq800:min-w-full mq450:gap-[16px] gap-[31px] mq1350:max-w-full">
               <div className="w-full">
                 {isPlaying ? (
                   <video
-                    className="w-full h-[400px] relative overflow-hidden shrink-0 object-cover"
+                    className="w-full h-[400px] mq925:aspect-video relative overflow-hidden shrink-0 object-cover"
                     controls
                     autoPlay
                   >
@@ -203,17 +212,16 @@ if(localStorage.getItem('redirectToCart')){
                 ) : (
                   <div className="relative">
                     <img
-                      className="w-full h-[400px] mq925:h-[200px] relative  object-cover"
+                      className="w-full h-[400px] rounded-2xl opacity-95 mq925:aspect-video mq925:h-[200px] relative  object-cover"
                       alt=""
                       src={`${API_URL}${image}`}
                     />
                     {isBought ? (
-                      
                       <button
                         className="absolute rounded-[50%] p-3 bg-gray1 cursor-pointer  top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
                         onClick={handlePlay}
                       >
-                        <div>{console.log(isBought,'Isbought in play')}</div>
+                        <div>{console.log(isBought, "Isbought in play")}</div>
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           fill="none"
@@ -257,11 +265,11 @@ if(localStorage.getItem('redirectToCart')){
               <div className="self-stretch h-[589.2px] flex flex-col items-start justify-start pt-0 px-0  box-border gap-[32px] max-w-full  mq450:gap-[16px]  mq450:box-border  mq1150:box-border">
                 <div className="self-stretch flex flex-col items-start justify-start gap-[11.2px] shrink-0">
                   <div className="self-stretch flex flex-col items-start justify-start pt-0 px-0 pb-2.5">
-                    <h2 className="self-stretch m-0 relative text-white leading-[32px] mq450:text-base mq450:leading-[26px]">
+                    <h2 className="self-stretch m-0 relative text-gray1 leading-[32px] mq450:text-base mq450:leading-[26px]">
                       About Course
                     </h2>
                   </div>
-                  <div className="self-stretch flex flex-col items-start justify-start pt-0 pb-[0.8px] pr-[3px] pl-0 text-base text-white">
+                  <div className="self-stretch flex flex-col items-start justify-start pt-0 pb-[0.8px] pr-[3px] pl-0 text-base text-gray1">
                     {Desc.map((desc, index) => (
                       <div
                         key={index}
@@ -269,7 +277,7 @@ if(localStorage.getItem('redirectToCart')){
                       >
                         {desc.children.map((child, index) => (
                           <p className="m-0 ml-5 mb-2" key={index}>
-                           ↦ {child.text}
+                            ↦ {child.text}
                           </p>
                         ))}
                       </div>
@@ -278,42 +286,49 @@ if(localStorage.getItem('redirectToCart')){
                 </div>
                 <div className="self-stretch flex flex-col items-start justify-start mq925:hidden gap-[11.2px] shrink-0">
                   <div className="self-stretch flex flex-col items-start justify-start pt-0 px-0 pb-2.5">
-                    <h2 className="self-stretch m-0 relative text-white leading-[32px] mq450:text-base mq450:leading-[26px]">
-                    What Will You Learn?
-
+                    <h2 className="self-stretch m-0 relative text-gray1 leading-[32px] mq450:text-base mq450:leading-[26px]">
+                      What Will You Learn?
                     </h2>
                   </div>
-                  <div className="self-stretch flex flex-col items-start justify-start pt-0 pb-[0.8px] pr-[3px] pl-0 text-base text-white">
-                  {learn.map((L, index) => (
+                  <div className="self-stretch flex flex-col items-start justify-start pt-0 pb-[0.8px] pr-[3px] pl-0 text-base text-gray1">
+                    {learn.map((L, index) => (
                       <div
                         key={index}
                         className="self-stretch flex flex-row  items-start justify-start shrink-0"
                       >
-                          {L.children.map((child, index) => (
+                        {L.children.map((child, index) => (
                           <p className="m-0 ml-5 mb-2" key={index}>
-                           ↦ {child.text}
+                            ↦ {child.text}
                           </p>
                         ))}
                       </div>
                     ))}
                   </div>
                 </div>
-               
               </div>
             </div>
 
-            <div className="w-[448px] flex   flex-col items-start justify-start  px-6 pb-[359.3px] text-white box-border gap-[24px]  text-5xl mq800:pb-[152px] mq800:box-border mq800:min-w-full mq1150:w-full mq1350:pb-[234px] mq1350:box-border mq1350:max-w-full">
-              <div className="self-stretch rounded-md bg-gray1 flex flex-col items-start justify-start pt-0 px-0 pb-px border-[1px] border-solid border-thelondonhairdressingacademycom-ghost">
+            <div className="w-[448px] flex   flex-col items-start justify-start  px-6 pb-[359.3px] text-gray1 box-border gap-[24px]  text-5xl mq800:pb-[152px] mq800:box-border mq800:min-w-full mq1150:w-full mq1350:pb-[234px] mq1350:box-border mq1350:max-w-full">
+              <div className="self-stretch rounded-md bg-white flex flex-col items-start justify-start pt-0 px-0 pb-px drop-shadow-2xl ">
                 {isBought ? (
                   <div className="flex flex-col min-w-full gap-2 mt-4 mb-4 items-center justify-center pt-0 px-0 pb-[0.7px]">
-                  <h1 className="relative w-full m-0  text-white text-center items-center justify-center">keep Learing...</h1>
-                  <button className="btn" onClick={()=>{navigate('/onlineCourse')}}>View Courses</button>
+                    <h1 className="relative w-full m-0  text-gray1 text-center items-center justify-center">
+                      keep Learing...
+                    </h1>
+                    <button
+                      className="btn"
+                      onClick={() => {
+                        navigate("/onlineCourse");
+                      }}
+                    >
+                      View Courses
+                    </button>
                   </div>
                 ) : (
                   <div className="self-stretch rounded-t-md rounded-b-none bg-thelondonhairdressingacademycom-aqua-haze flex flex-col items-start justify-start pt-8 px-8 pb-[31.2px] gap-[24px]">
                     <div className="self-stretch h-[38.4px] flex flex-row items-end justify-start pt-0 px-0 pb-0 box-border">
                       <div className="flex flex-col items-start justify-start pt-0 px-0 pb-[0.7px]">
-                        <b className="relative text-white leading-[39px] inline-block min-w-[76px] whitespace-nowrap mq450:text-lgi mq450:leading-[31px]">
+                        <b className="relative text-gray1 leading-[39px] inline-block min-w-[76px] whitespace-nowrap mq450:text-lgi mq450:leading-[31px]">
                           ₹ {course.Price}
                         </b>
                       </div>
@@ -324,14 +339,14 @@ if(localStorage.getItem('redirectToCart')){
                         className="no-underline"
                       >
                         {" "}
-                        <button className="cursor-pointer py-[9px] px-5 bg-slate-500 text-white self-stretch rounded-md flex flex-row items-center justify-center border-[1px] border-solid ">
+                        <button className="cursor-pointer py-[9px] px-5 bg-gray1 text-white self-stretch rounded-md flex flex-row items-center justify-center border-[1px] border-solid ">
                           View Cart
                         </button>{" "}
                       </Link>
                     ) : (
                       <button
                         onClick={addToCart}
-                        className="cursor-pointer py-[9px] px-5 bg-slate-500 text-white self-stretch rounded-md flex flex-row items-center justify-center border-[1px] border-solid "
+                        className="cursor-pointer py-[9px] px-5 bg-gray1 text-white self-stretch rounded-md flex flex-row items-center justify-center border-[1px] border-solid "
                       >
                         Add to Cart
                       </button>
@@ -339,7 +354,7 @@ if(localStorage.getItem('redirectToCart')){
                   </div>
                 )}
 
-                <div className="self-stretch rounded-t-none  rounded-b-8xs flex flex-col items-start text-white justify-start pt-[23px] px-8 pb-6 text-base text-thelondonhairdressingacademycom-mako border-t-[1px] border-solid border-thelondonhairdressingacademycom-ghost">
+                <div className="self-stretch rounded-t-none  rounded-b-8xs flex flex-col items-start text-gray1 justify-start pt-[23px] px-8 pb-6 text-base text-thelondonhairdressingacademycom-mako border-t-[1px] border-solid border-thelondonhairdressingacademycom-ghost">
                   <div className="self-stretch flex flex-col items-start justify-start gap-[11.2px]">
                     <div className="self-stretch flex flex-row items-end justify-start py-0 pr-[239px] pl-0 mq450:pr-5 mq450:box-border">
                       <div className="flex flex-col items-start justify-center pt-[4.2px] pb-[0.2px] pr-3 pl-0">
@@ -386,74 +401,65 @@ if(localStorage.getItem('redirectToCart')){
                   </div>
                 </div>
               </div>
-              <div className="self-stretch flex flex-col items-start bg-gray1 justify-start max-w-full text-base text-white">
-                <div className="self-stretch rounded-t-md rounded-b-none bg-thelondonhairdressingacademycom-white-lilac box-border flex flex-col items-start justify-start pt-[23px] pb-6 pr-5 pl-[33px] gap-[26.8px] max-w-full border-t-[1px] border-solid border-thelondonhairdressingacademycom-ghost border-r-[1px] border-l-[1px]">
-                  <div className="w-[334px] relative leading-[26px] flex items-center max-w-full">
-                    A course by
-                  </div>
-                  <div className="flex flex-row items-start justify-start gap-[16px] text-sm text-thelondonhairdressingacademycom-nero-80">
-                    <div className="shadow-[0px_0px_0px_1px_#cdcfd5] rounded-[100px] bg-htmlbeanscom-nero overflow-hidden flex flex-row items-start justify-start">
-                      <div className="bg-thelondonhairdressingacademycom-dusty-gray flex flex-row items-start justify-start pt-[11.6px] pb-[12.4px] pr-[19.9px] pl-[20.1px]">
-                        <div className="relative leading-[24px] inline-block min-w-[8px]">
-                          I
+
+              <div className="self-stretch  flex flex-col items-start bg-white justify-start max-w-full text-base text-gray1">
+                <h2 className="px-5 m-0 mt-3">Lesson Plan</h2>
+                      {lessonPlan && lessonPlan.map((plan, index)=>(
+                <ul class="m-0 px-5 py-2 list-none min-w-[90%]" key={index}>
+                  <li className="drop-shadow-2xl bg-white mb-2  ">
+                    <details class="group">
+                      <summary class="flex items-center gap-3 px-4 py-3 justify-between font-medium marker:content-none hover:cursor-pointer">
+                        <span>{plan.Topic}</span>
+                        <span class="transition group-open:rotate-180">
+                          <svg
+                            className="h-6 "
+                            fill="none"
+                            height="24"
+                            shape-rendering="geometricPrecision"
+                            stroke="currentColor"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="1.5"
+                            viewBox="0 0 24 24"
+                            width="24"
+                          >
+                            <path d="M6 9l6 6 6-6"></path>
+                          </svg>
+                        </span>
+                      </summary>
+
+                      <article class="px-4 pb-4 flex">
+                        <img
+                          className="w-full h-[200px] rounded-2xl opacity-95 mq925:aspect-video mq925:h-[200px] relative  object-cover"
+                          alt=""
+                          src={`${API_URL}${plan.Cover.data.attributes.url}`}
+                        />
+                        <div className="absolute flex bottom- p-2  z-50 bg-gray1  rounder-lg text-white gap-1 justify-center items-center text-center ">
+                          <div className="justify-center items-center text-center ">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              viewBox="0 0 24 24"
+                              fill="currentColor"
+                              className="w-6 h-6"
+                            >
+                              <path
+                                fillRule="evenodd"
+                                d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25ZM12.75 6a.75.75 0 0 0-1.5 0v6c0 .414.336.75.75.75h4.5a.75.75 0 0 0 0-1.5h-3.75V6Z"
+                                clipRule="evenodd"
+                              />
+                            </svg>
+                          </div>
+                          <div className=" font-semibold justify-center items-center mb-1 text-center  ">
+                           {plan.TimeStamp.substring(0,5)}
+                          </div>
                         </div>
-                      </div>
-                    </div>
-                    <div className="flex flex-col items-start justify-start pt-[10.6px] px-0 pb-0 text-base text-thelondonhairdressingacademycom-shark">
-                      <b className="relative leading-[26px] inline-block min-w-[33px]">
-                        IHF
-                      </b>
-                    </div>
-                  </div>
-                </div>
-                <div className="self-stretch rounded-t-none rounded-b-md bg-thelondonhairdressingacademycom-white-lilac flex flex-col items-start justify-start pt-[23px] px-8 pb-[35px] gap-[15.2px] mq925:gap-0 text-xl border-[1px] border-solid border-thelondonhairdressingacademycom-ghost mq450:pt-5 mq450:pb-[23px] mq450:box-border">
-                  <div className="self-stretch flex flex-col items-start justify-start pt-0 px-0 pb-2.5">
-                    <b className="self-stretch relative leading-[32px] mq450:text-base ">
-                      Material Includes
-                    </b>
-                  </div>
-                  <div className="self-stretch flex flex-col items-start justify-start gap-[11.2px] text-base">
-                      <div className="flex-1 flex flex-col items-start justify-start py-0 pr-5 pl-0 box-border min-w-[201px]">
-                        <div className="relative leading-[25.6px]">
-                          <p className="m-0">
-                            Access to bespoke training videos
-                          </p>
-                          <p className="m-0">created by The LHA.</p>
-                        </div>
-                      </div>
-                    <div className="self-stretch flex flex-row items-end justify-start py-0 pr-[5px] pl-0  mq450:flex-wrap">
-                      <div className="flex-1 flex flex-col items-start justify-start py-0 pr-5 pl-0 box-border min-w-[201px]">
-                        <div className="relative leading-[25.6px]">
-                          <p className="m-0">
-                            English subtitles are included in all our
-                          </p>
-                          <p className="m-0">videos.</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="self-stretch flex flex-row items-end justify-start py-0 pr-[5.2px] pl-0 [row-gap:20px] mq450:flex-wrap">
-                      <div className="flex-1 flex flex-col items-start justify-start py-0 pr-5 pl-0 box-border min-w-[201px]">
-                        <div className="relative leading-[25.6px]">
-                          <p className="m-0">
-                            2 attempts to submit all colour work
-                          </p>
-                          <p className="m-0">photos to tutor.</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="self-stretch flex flex-row items-end justify-start py-0 pr-[5.3px] pl-0 [row-gap:20px] mq450:flex-wrap">
-                    
-                      <div className="flex-1 flex flex-col items-start justify-start py-0 pr-[15.7px] pl-0 box-border min-w-[201px]">
-                        <div className="relative leading-[25.6px]">
-                          <p className="m-0">
-                            In house certification accredited by The
-                          </p>
-                          <p className="m-0">IHF (PDF).</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                      </article>
+                    </details>
+                  </li>
+                </ul>
+                      ))}
+
+
               </div>
             </div>
           </div>

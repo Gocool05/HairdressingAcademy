@@ -45,7 +45,7 @@ if (error) return <div>An error occurred: {error.message}</div>;
 
 
   return (
-    <div className='container overflow-x-hidden bg-black'>
+    <div className='container overflow-x-hidden bg-bgwhite'>
       <NavBar/>
       <div className="divet-pb-module-wrapper">
     <div className="divet-pb-module">
@@ -61,31 +61,42 @@ if (error) return <div>An error occurred: {error.message}</div>;
       </div>
     </div>
   </div>
-      {/* <div className="self-stretch  flex flex-col items-center justify-start pt-[27.1px] px-5 pb-[27.9px] box-border gap-[1px] max-w-full z-[1] text-smi text-dimgray-200">
-        <div className="w-[751.1px] relative leading-[23.8px] flex items-center justify-center max-w-full shrink-0">
-          {headerBottom}
-          </div>
-      </div> */}
 
-      <section className="self-stretch  flex flex-row items-start justify-start pt-0 px-0 pb-[86.5px] box-border max-w-full shrink-0 mq975:pb-[23px] mq975:box-border mq1500:pb-9 mq1500:box-border">
+  <div className="self-stretch  flex flex-col items-center justify-start py-5  px-5  box-border gap-[1px] max-w-full z-[1] text-smi text-gray1">
+           <div className="w-[751.1px] relative  flex items-center justify-center max-w-full shrink-0">
+           Learn the newest techniques from the Godfather of Hair Design himself. Get 25 years of experience packed into the ultimate online masterclass!
+             </div>
+         </div>
+      <section className="self-stretch  flex flex-row items-start justify-start pt-0 px-0 pb-[86.5px] box-border max-w-full shrink-0 mq975:pb-[23px] mq975:box-border mq1500:pb-9 mq1500:box-border">   
         <div className="self-stretch  flex flex-row mq925:flex-col flex-wrap items-start justify-between py-[87px] px-[180px] mq450:px-5  gap-[20px] mq975:py-[57px] mq975:px-[10px] mq975:box-border">
        
        {courses &&courses.map((card)=>(
 <Link to={'/details/course/'+card.attributes.course.data.id} onClick={()=>{handleOnclick('/details/course/'+card.attributes.course.data.id)}} className='no-underline'>
- <div key={card.id} className="w-[400px] h-[550px] mq925:w-[100%] mq925:h-auto backdrop-blur-xl rounded-xl bg-opacity-90 bg-gray1 backdrop-filter flex flex-col items-start justify-start pt-0 px-0 pb-[17.9px] box-border gap-5 text-left text-base text-white font-open-sans">
+ <div key={card.id} className="w-[400px] h-[350px] mq925:w-[100%] mq925:h-auto backdrop-blur-xl rounded-xl bg-opacity-90 bg-white drop-shadow-2xl backdrop-filter flex flex-col items-start justify-start pt-0 px-0 pb-[17.9px] box-border gap-5 text-left text-base text-gray1 font-open-sans">
  <img
-   className="self-stretch h-[200px] relative max-w-full overflow-hidden shrink-0 object-cover"
+   className="self-stretch h-[250px] rounded-t-2xl bg-gradient-to-t from-black relative max-w-full overflow-hidden shrink-0 object-cover"
    alt=""
    src={`${API_URL}${card.attributes.course.data.attributes.CourseImage.data.attributes.url}`}
  />
- <div className="flex flex-row items-start justify-start py-0 px-5">
+ <div className="absolute flex bottom-24 p-2 right-1  z-50 bg-transparent text-white gap-1 justify-center items-center text-center "> 
+ <div className="justify-center items-center text-center ">
+ <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
+  <path fillRule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25ZM9 7.5A.75.75 0 0 0 9 9h1.5c.98 0 1.813.626 2.122 1.5H9A.75.75 0 0 0 9 12h3.622a2.251 2.251 0 0 1-2.122 1.5H9a.75.75 0 0 0-.53 1.28l3 3a.75.75 0 1 0 1.06-1.06L10.8 14.988A3.752 3.752 0 0 0 14.175 12H15a.75.75 0 0 0 0-1.5h-.825A3.733 3.733 0 0 0 13.5 9H15a.75.75 0 0 0 0-1.5H9Z" clipRule="evenodd" />
+</svg>
+
+ </div>
+ <div className=" font-semibold justify-center items-center mb-1 text-center ">
+           {card.attributes.course.data.attributes.Price}
+         </div>
+         </div>
+ <div className="flex flex-row items-start justify-between py-0 px-5">
    <div className="flex flex-col items-start justify-start gap-[1px]">
-     <div className="relative  uppercase">
+     <div className="relative font-bold uppercase">
        {card.attributes.course.data.attributes.CourseName}
      </div>
    </div>
  </div>
- <div className="self-stretch flex flex-row items-start justify-start py-0 pr-[29px] pl-5 text-white font-cormorant-garamond">
+ {/* <div className="self-stretch flex flex-row items-start justify-start py-0 pr-[29px] pl-5 text-gray1 font-cormorant-garamond">
    <div className="flex-1 flex flex-col items-start justify-start gap-[9px]">
      <div className="flex flex-row items-center justify-start gap-[9.6px]">
        <div className="flex flex-col items-start justify-start pt-[3px] px-0 pb-0">
@@ -95,12 +106,12 @@ if (error) return <div>An error occurred: {error.message}</div>;
 </svg>
          </div>
        </div>
-       <div className="relative leading-[24px] uppercase font-semibold font-open-sans text-white inline-block min-w-[128px] shrink-0 [debug_commit:1de1738]">
+       <div className="relative leading-[24px] uppercase font-semibold font-open-sans text-gray1 inline-block min-w-[128px] shrink-0 [debug_commit:1de1738]">
          enrol anytime
        </div>
      </div>
-     <div className="self-stretch flex flex-col items-start justify-start gap-[1.2px] text-smi text-white font-open-sans">
-       <div className="w-[39px] flex flex-row items-center justify-start gap-[6px] text-base text-dimgray-100 font-cormorant-garamond">
+     <div className="self-stretch flex flex-col items-start justify-start gap-[1.2px] text-smi text-gray1 font-open-sans">
+       <div className="w-[39px] flex flex-row items-center justify-start gap-[6px] text-base text-gray1 font-cormorant-garamond">
          <div className="flex-1 flex flex-col items-start justify-start pt-[3px] px-0 pb-0">
            <div className="relative leading-[16px] uppercase inline-block min-w-[13px]">
            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
@@ -108,7 +119,7 @@ if (error) return <div>An error occurred: {error.message}</div>;
 </svg>
            </div>
          </div>
-         <div className="relative leading-[24px] uppercase font-semibold font-open-sans text-white inline-block min-w-[19px]">
+         <div className="relative leading-[24px] uppercase font-semibold font-open-sans text-text-gray1 inline-block min-w-[19px]">
            {card.attributes.course.data.attributes.Price}
          </div>
        </div>
@@ -124,14 +135,14 @@ if (error) return <div>An error occurred: {error.message}</div>;
     ))}
      </div>
    </div>
- </div>
+ </div> */}
 </div> 
 </Link>
        ))}
         </div>
       </section>
-      <div className='self-stretch  flex flex-col items-start justify-start   px-[150px] mq925:px-6 pb-[60.2px] box-border gap-5 shrink-0 [debug_commit:1de1738] max-w-full z-[1] mt-[-49px] text-left text-mid text-white font-open-sans mq975:gap-[20px] mq975:pb-[25px] mq975:box-border mq1500:gap-[40px] mq1500:pb-[39px] mq1500:box-border'>
-      <h1 className='text-white mq925:justify-center'>Frequently Asked Questions</h1>
+      <div className='self-stretch  flex flex-col items-start justify-start   px-[150px] mq925:px-6 pb-[60.2px] box-border gap-5 shrink-0 [debug_commit:1de1738] max-w-full z-[1] mt-[-49px] text-left text-mid text-gray1 font-open-sans mq975:gap-[20px] mq975:pb-[25px] mq975:box-border mq1500:gap-[40px] mq1500:pb-[39px] mq1500:box-border'>
+      <h1 className='text-gray1 mq925:justify-center'>Frequently Asked Questions</h1>
        {faqs && faqs.map((QA)=>(
       <div className="w-[1075px] flex flex-col items-start justify-start gap-[0.8px] max-w-full shrink-0 text-smi text-dimgray-300">
         <b className="relative leading-[24px]">{QA.Question} ?</b>

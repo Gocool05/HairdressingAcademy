@@ -91,34 +91,75 @@ const Album = () => {
 
 
   const [index, setIndex] = useState(-1);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [selectedImageIndex, setSelectedImageIndex] = useState(null);
 
-  const currentImage = images[index];
-  const nextIndex = (index + 1) % images.length;
-  const nextImage = images[nextIndex] || currentImage;
-  const prevIndex = (index + images.length - 1) % images.length;
-  const prevImage = images[prevIndex] || currentImage;
+  const openModal = (index) => {
+    console.log('Opening modal with image:',);
+    setSelectedImageIndex(index);
+    setModalOpen(true);
+  };
 
-  const handleClick = (index,item) => setIndex(index);
-  const handleClose = () => setIndex(-1);
-  const handleMovePrev = () => setIndex(prevIndex);
-  const handleMoveNext = () => setIndex(nextIndex);
+  const closeModal = () => {
+    console.log('Closing modal');
+      setSelectedImage(null);
+      setModalOpen(false);
+  };
+  const nextImage = () => {
+    setSelectedImageIndex((prevIndex) => (prevIndex + 1) % images.length);
+};
 
+const prevImage = () => {
+    setSelectedImageIndex((prevIndex) => (prevIndex + images.length - 1) % images.length);
+};
+console.log('modalOpen:', modalOpen);
+console.log('selectedImageIndex:', selectedImageIndex);
   return (
-    <div className="container overflow-x-hidden">
-    <NavBar/>
-    <div className="">
-    <div className="section-title" >
-          <h1 style={{textAlign: "center" ,color:'#C5C6C7'}} >Gallery</h1>
-          <p style={{textAlign: "center",color:'#D6D6D6'}}>Frozen moments from IHF by javed khan</p>
+    <div className="container overflow-x-hidden bg-bgwhite">
+            <NavBar />
+            <div className="">
+                <div className="section-title">
+                    <h1 style={{ textAlign: "center" }} className='text-gray1'>Gallery</h1>
+                    <p style={{ textAlign: "center" }} className='text-gray1'>Frozen moments from IHF by javed khan</p>
+                </div>
+                <div className="px-28 py-16 mq925:p-2">
+                    <div id="imageGallery">
+                        {images.map((image, index) => (
+                            <img
+                            className="h-[200px] w-auto "
+                                key={index}
+                                src={image.src}
+                                alt={`Image ${index}`}
+                                onClick={() => openModal(index)}
+                                style={{ cursor: 'pointer' }}
+                            />
+                        ))}
+                    </div>
+                </div>
+
+                {/* The modal for displaying the full-screen image */}
+                {modalOpen && selectedImageIndex !== null && (
+                   <div className="fixed top-0 left-0 w-screen h-screen flex justify-center items-center bg-black bg-opacity-75">
+                   <div className=" rounded-lg w-auto-auto">
+                     <div className="relative">
+                       <button className="absolute top-0 right-0 m-4 text-white cursor-pointer" onClick={closeModal}>
+                         <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                         </svg>
+                       </button>
+                       <img className="mx-auto max-h-[500px] mq925:max-h-[400px]: max-w-full" src={images[selectedImageIndex].src} alt="Full-screen" />
+                     </div>
+                     <div className="flex justify-between mt-2 bg-transparent px-4">
+                       <button className="bg-gray-800 text-white px-4 py-2 rounded-md btn" onClick={prevImage}>Previous</button>
+                       <button className="bg-gray-800 text-white px-4 py-2 rounded-md btn" onClick={nextImage}>Next</button>
+                     </div>
+                   </div>
+                 </div>
+                )}
+            </div>
+            <Footer />
         </div>
-        <div className="px-28 py-16 mq925:p-2">
-        <div>
-      <Gallery images={images} enableImageSelection={false} />
-    </div>
-        </div>
-    </div>
-    <Footer/>
-    </div>
   );
 
 };
