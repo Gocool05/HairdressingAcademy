@@ -29,7 +29,7 @@ const Footer = () => {
     }
 
   return (
-    <footer className=" bg-gray1">
+    <footer className=" bg-gray1 ">
     <div className=" px-6 py-8 ">
         <div className="fleX flex-col items-center text-center">
             {/* <a href="#"> */}

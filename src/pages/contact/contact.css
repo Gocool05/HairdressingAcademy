@@ -2,12 +2,12 @@
   .contacts h1 {
     font-size: 30px;
     font-weight: 400;
-    color: #C5C6C7;
+    color: #17191c;
     padding: 0;
     margin: 0;
   }
   .contacts p {
-    color: #C5C6C7;
+    color: #17191c;
     padding: 0;
     margin: 0;
   }
@@ -51,6 +51,7 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
+    
   }
   @media screen and (max-width: 768px) {
  

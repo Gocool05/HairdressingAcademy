@@ -9,25 +9,25 @@ const Contact = () => {
   return (
     <>
     <NavBar/>
-      <section className='contacts  px-14 py-14 flex gap-5 mq925:px-6 mq925:flex-col'>
+      <section className='contacts bg-bgwhite  px-14 py-14 flex gap-5 mq925:px-6 mq925:flex-col'>
           <div className='left flex w-[50%] mq925:w-full'>
             <iframe className="w-full" src={map}></iframe>
           </div>
-          <div className=' right items-start justify-start w-[50%] mq925:w-full'>
+          <div className=' right items-start text-gray1 justify-start w-[50%] mq925:w-full'>
             <h1>Contact us</h1>
             <p>We're open for any suggestion or just to have a chat</p>
 
             <div className='items grid2'>
               <div className='box'>
-                <h4 className="text-white">ADDRESS:</h4>
+                <h4 className="text-gray1">ADDRESS:</h4>
                 <p>xxx yyy zzz</p>
               </div>
               <div className='box'>
-                <h4 className="text-white">EMAIL:</h4>
+                <h4 className="text-gray1">EMAIL:</h4>
                 <p> ihfbyjavedkhan.1@gmail.com</p>
               </div>
               <div className='box'>
-                <h4 className="text-white">PHONE:</h4>
+                <h4 className="text-gray1">PHONE:</h4>
                 <p>+91 9xxxx xxxx9</p>
               </div>
             </div>
@@ -41,7 +41,7 @@ const Contact = () => {
               <textarea cols='30' rows='5'>
                 Create a message here...
               </textarea>
-              <button className='btn'>SEND MESSAGE</button>
+              <button className='btn1 '>SEND MESSAGE</button>
             </form>
           </div>
       </section>

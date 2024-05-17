@@ -5,6 +5,7 @@ import { useState } from "react";
 import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
 import Footer from "./Footer";
 import NavBar from "./NavBar";
+import { notification } from "antd";
 const API_URL = process.env.REACT_APP_API_URL;
 const JWT = localStorage.getItem("JwtToken");
 // Details changed 
@@ -22,6 +23,8 @@ const Details = () => {
   const [isBought, setIsBought] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [purchasedId, setPurchasedId] = useState(null);
+  const [lessonVideoUrl, setLessonVideoUrl] = useState(null);
+  const [videoKey, setVideoKey] = useState(0);
   const userId = localStorage.getItem("UserId");
 
 
@@ -40,7 +43,7 @@ if(localStorage.getItem('redirectToCart')){
 
   const { data: cart } = useQuery("Cart", User);
 
-  console.log(cart, "Users details");
+  // console.log(cart, "Users details");
  
   const fetchData = async () => {
     try {
@@ -49,19 +52,17 @@ if(localStorage.getItem('redirectToCart')){
       );
       const responseData = response.data.data;
       setCourse(responseData.attributes);
-      // console.log("course details ",course);
+      console.log("course details ",response.data);
+      setLearn(response.data.data.attributes.WhatYouWillLearn);
       setDesc(response.data.data.attributes.Description);
       setImage(response.data.data.attributes.CourseImage.data.attributes.url);
-      setVideo(response.data.data.attributes.CourseVideo.data.attributes.url);
-      setLearn(response.data.data.attributes.WhatYouWillLearn);
+      setVideo(response.data.data.attributes.PreviewVideo.data.attributes.url);
       setUpdatedAt(response.data.data.attributes.updatedAt);
       localStorage.removeItem("redirectToCart");
     } catch (err) {
       console.error(err);
     }
   };
-  console.log(course, "Courses updated");
-
   const addToCart = async () => {
     if (JWT) {
       if (cart) {
@@ -73,7 +74,7 @@ if(localStorage.getItem('redirectToCart')){
               },
             },
           });
-          console.log(response, "cartUpdated");
+          // console.log(response, "cartUpdated");
           queryClient.invalidateQueries("Cart");
         } catch (err) {
           console.error(err);
@@ -89,7 +90,7 @@ if(localStorage.getItem('redirectToCart')){
             },
           });
           queryClient.invalidateQueries("Cart");
-          console.log(response, "cartCreated");
+          // console.log(response, "cartCreated");
         } catch (err) {
           console.error(err);
         }
@@ -101,8 +102,8 @@ if(localStorage.getItem('redirectToCart')){
   };
 
   const isCartEmpty = async () => {
-    console.log("id:", id);
-    console.log("cartCourses:", cart);
+    // console.log("id:", id);
+    // console.log("cartCourses:", cart);
     if (cart && cart.courses && cart.courses.length > 0) {
       const isLiked = cart.courses.map(
         (course) => course.id.toString() === id.toString()
@@ -112,7 +113,7 @@ if(localStorage.getItem('redirectToCart')){
       if (anyLiked) {
         queryClient.invalidateQueries("Cart");
         setCourseInCart(true);
-        console.log("courseincart", courseInCart);
+        // console.log("courseincart", courseInCart);
       }
     } else {
       console.log("Cart is empty");
@@ -131,7 +132,7 @@ if(localStorage.getItem('redirectToCart')){
     "PurchasedCourse",
     PurchasedCourse
   );
-  console.log(purchasedCourse, "PurchasedCourse");
+  // console.log(purchasedCourse, "PurchasedCourse");
 
   const LessonPlan = async() =>{
     const response = await axios.get(`${API_URL}/api/courses/${id}?populate[LessonPlan][populate]=*`);
@@ -149,13 +150,13 @@ if(localStorage.getItem('redirectToCart')){
       purchasedCourse.length > 0
       ) {
         const isPurchase = purchasedCourse.map(course => course.id.toString() === id.toString());
-        console.log(isPurchase, "purchasedCourse is true or not");
-        console.log(id,'course ID');
+        // console.log(isPurchase, "purchasedCourse is true or not");
+        // console.log(id,'course ID');
         const anyLiked = isPurchase.includes(true);
         if (anyLiked) {
         // queryClient.invalidateQueries("PurchasedCourse");
         setIsBought(true);
-        console.log(isBought, "isBoughtCourse is true or not");
+        // console.log(isBought, "isBoughtCourse is true or not");
       }
     } else {
       console.log("NO courses purchased");
@@ -165,19 +166,41 @@ if(localStorage.getItem('redirectToCart')){
   useEffect(() => {
     isPurchased();
   }, [purchasedCourse]);
-    
-  const handlePlay = () => {
-    if (isBought) {
-      setIsPlaying(true);
-    } else {
-      // Implement logic to prompt user to make payment
-      alert("Please make a payment to unlock the video.");
-    }
+
+ 
+  const [isPreview,setIsPreview] = useState(true);
+  const handlePlay = (videoUrl) => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+      if (isBought) {
+        setIsPreview(false);
+        setLessonVideoUrl(videoUrl);
+        setIsPlaying(true);
+        setVideoKey(prevKey => prevKey + 1);
+      } else {
+        notification.error({message:"Please make a payment to unlock the video.",placement:"top"});
+      }
   };
+  const handlePreviewPlay =() => {
+
+    if(isBought) {
+      setLessonVideoUrl(lessonPlan[0].courseVideo.data.attributes.url);
+      setIsPlaying(true);
+    }else{
+      setLessonVideoUrl(video);
+      setIsPlaying(true);
+    }
+
+  };
+
+
 
   useEffect(() => {
     fetchData();
   }, [id]);
+
   useEffect(() => {
     isCartEmpty();
   }, [cart]);
@@ -194,108 +217,105 @@ if(localStorage.getItem('redirectToCart')){
   return (
     <>
       <NavBar />
-      <div className="w-full relative bg-[#D6D6D6] flex flex-row items-start justify-center py-0 px-5 box-border leading-[normal] tracking-[normal]">
-        <section className="w-[1320px] flex flex-col items-start justify-start  max-w-[1320px] text-left text-xl text-thelondonhairdressingacademycom-shark font-htmlbeanscom-open-sans-regular-14 mq800:gap-[22px] mq1350:max-w-full">
+      <div className="w-full  bg-[#D6D6D6] flex flex-row items-start justify-center py-0 pb-20 px-5 box-border leading-[normal] tracking-[normal]">
+        <section className="w-[1320px] flex flex-col items-start justify-start   max-w-[1320px] text-left text-xl  mq800:gap-[22px] mq1350:max-w-full">
           <h1 className="text-gray1 pl-3">{course.CourseName}</h1>
           <div className="ml-[-12px] w-[1344px] flex flex-row mq925:flex-col items-start gap-12 justify-start max-w-[102%] shrink-0 mq1150:flex-wrap">
-            <div className="flex-1 flex flex-col items-start justify-start py-0 px-6 box-border  max-w-[1344px] mq800:min-w-full mq450:gap-[16px] gap-[31px] mq1350:max-w-full">
-              <div className="w-full">
-                {isPlaying ? (
-                  <video
-                    className="w-full h-[400px] mq925:aspect-video relative overflow-hidden shrink-0 object-cover"
-                    controls
-                    autoPlay
-                  >
-                    <source src={`${API_URL}${video}`} type="video/mp4" />
-                    Your browser does not support the video tag.
-                  </video>
-                ) : (
-                  <div className="relative">
-                    <img
-                      className="w-full h-[400px] rounded-2xl opacity-95 mq925:aspect-video mq925:h-[200px] relative  object-cover"
-                      alt=""
-                      src={`${API_URL}${image}`}
-                    />
-                    {isBought ? (
-                      <button
-                        className="absolute rounded-[50%] p-3 bg-gray1 cursor-pointer  top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
-                        onClick={handlePlay}
-                      >
-                        <div>{console.log(isBought, "Isbought in play")}</div>
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          strokeWidth={1.5}
-                          stroke="currentColor"
-                          className="w-10 text-white"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.347a1.125 1.125 0 0 1 0 1.972l-11.54 6.347a1.125 1.125 0 0 1-1.667-.986V5.653Z"
-                          />
-                        </svg>
-                      </button>
-                    ) : (
-                      <button
-                        className="absolute rounded-[50%]  p-3 bg-gray1 top-1/2 left-1/2 cursor-pointer transform -translate-x-1/2 -translate-y-1/2"
-                        onClick={handlePlay}
-                      >
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          strokeWidth={1.5}
-                          stroke="currentColor"
-                          className="w-10 text-white "
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z"
-                          />
-                        </svg>
-                      </button>
-                    )}
-                  </div>
-                )}
-              </div>
+           
+          <div className="flex flex-col items-start justify-start py-0 px-6 box-border min-w-[60%] mq800:min-w-full mq450:gap-[16px] gap-[31px] mq1350:max-w-full">
+            <div className="w-full">
+              {isPlaying && lessonVideoUrl ? (
+                <video
+                  className="w-full h-[400px] mq925:aspect-video relative overflow-hidden shrink-0 object-cover"
+                  controls
+                  key={videoKey}
+                  autoPlay
+                >
+                  <source src={`${API_URL}${lessonVideoUrl}`} type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+              ) : (
+                <div className="relative">
+                  <img
+                    className="w-full h-[400px] rounded-2xl opacity-95 mq925:aspect-video mq925:h-[200px] relative object-cover"
+                    alt=""
+                    src={`${API_URL}${image}`}
+                  />
+                  {/* {isBought ? ( */}
 
-              <div className="self-stretch h-[589.2px] flex flex-col items-start justify-start pt-0 px-0  box-border gap-[32px] max-w-full  mq450:gap-[16px]  mq450:box-border  mq1150:box-border">
-                <div className="self-stretch flex flex-col items-start justify-start gap-[11.2px] shrink-0">
-                  <div className="self-stretch flex flex-col items-start justify-start pt-0 px-0 pb-2.5">
-                    <h2 className="self-stretch m-0 relative text-gray1 leading-[32px] mq450:text-base mq450:leading-[26px]">
-                      About Course
-                    </h2>
-                  </div>
-                  <div className="self-stretch flex flex-col items-start justify-start pt-0 pb-[0.8px] pr-[3px] pl-0 text-base text-gray1">
-                    {Desc.map((desc, index) => (
-                      <div
-                        key={index}
-                        className="self-stretch flex flex-row  items-start justify-start shrink-0"
+                    <button
+                      className="absolute rounded-[50%] p-3 bg-gray1 cursor-pointer top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+                      onClick={() => handlePreviewPlay()}
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={1.5}
+                        stroke="currentColor"
+                        className="w-10 text-white"
                       >
-                        {desc.children.map((child, index) => (
-                          <p className="m-0 ml-5 mb-2" key={index}>
-                            ↦ {child.text}
-                          </p>
-                        ))}
-                      </div>
-                    ))}
-                  </div>
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.347a1.125 1.125 0 0 1 0 1.972l-11.54 6.347a1.125 1.125 0 0 1-1.667-.986V5.653Z"
+                        />
+                      </svg>
+                    </button>
+             {/* ) : (
+                  <button
+                      className="absolute rounded-[50%] p-3 bg-gray1 top-1/2 left-1/2 cursor-pointer transform -translate-x-1/2 -translate-y-1/2"
+                      onClick={() => handlePlay(video)}
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={1.5}
+                        stroke="currentColor"
+                        className="w-10 text-white"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z"
+                        />
+                      </svg>
+                    </button> 
+                   )}  */}
                 </div>
-                <div className="self-stretch flex flex-col items-start justify-start mq925:hidden gap-[11.2px] shrink-0">
-                  <div className="self-stretch flex flex-col items-start justify-start pt-0 px-0 pb-2.5">
-                    <h2 className="self-stretch m-0 relative text-gray1 leading-[32px] mq450:text-base mq450:leading-[26px]">
-                      What Will You Learn?
-                    </h2>
-                  </div>
-                  <div className="self-stretch flex flex-col items-start justify-start pt-0 pb-[0.8px] pr-[3px] pl-0 text-base text-gray1">
-                    {learn.map((L, index) => (
-                      <div
-                        key={index}
-                        className="self-stretch flex flex-row  items-start justify-start shrink-0"
-                      >
+              )}
+            </div>
+  
+            <div className="relative flex flex-col items-start justify-start pb-10 px-0 box-border gap-[32px] max-w-full mq450:gap-[16px] mq450:box-border mq1150:box-border">
+              <div className="self-stretch flex flex-col items-start justify-start gap-[11.2px] shrink-0">
+                <div className="self-stretch flex flex-col items-start justify-start pt-0 px-0 pb-2.5">
+                  <h2 className="self-stretch m-0 relative text-gray1 leading-[32px] mq450:text-base mq450:leading-[26px]">
+                    About Course
+                  </h2>
+                </div>
+                <div className="self-stretch flex flex-col items-start justify-start pt-0 pb-[0.8px] pr-[3px] pl-0 text-base text-gray1">
+                  {Desc.map((desc, index) => (
+                    <div key={index} className="self-stretch flex flex-row items-start justify-start shrink-0">
+                      {desc.children.map((child, index) => (
+                        <p className="m-0 ml-5 mb-2" key={index}>
+                          ↦ {child.text}
+                        </p>
+                      ))}
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div className="self-stretch flex flex-col items-start justify-start mq925:hidden gap-[11.2px] shrink-0">
+                <div className="self-stretch flex flex-col items-start justify-start pt-0 px-0 pb-2.5">
+                  <h2 className="self-stretch m-0 relative text-gray1 leading-[32px] mq450:text-base mq450:leading-[26px]">
+                    What Will You Learn?
+                  </h2>
+                </div>
+                <div className="self-stretch flex flex-col items-start justify-start pt-0 pb-[0.8px] pr-[3px] pl-0 text-base text-gray1">
+                  {learn &&
+                    learn.map((L, index) => (
+                      <div key={index} className="self-stretch flex flex-row items-start justify-start shrink-0">
                         {L.children.map((child, index) => (
                           <p className="m-0 ml-5 mb-2" key={index}>
                             ↦ {child.text}
@@ -303,11 +323,10 @@ if(localStorage.getItem('redirectToCart')){
                         ))}
                       </div>
                     ))}
-                  </div>
                 </div>
               </div>
             </div>
-
+          </div>
             <div className="w-[448px] flex   flex-col items-start justify-start  px-6 pb-[359.3px] text-gray1 box-border gap-[24px]  text-5xl mq800:pb-[152px] mq800:box-border mq800:min-w-full mq1150:w-full mq1350:pb-[234px] mq1350:box-border mq1350:max-w-full">
               <div className="self-stretch rounded-md bg-white flex flex-col items-start justify-start pt-0 px-0 pb-px drop-shadow-2xl ">
                 {isBought ? (
@@ -316,7 +335,7 @@ if(localStorage.getItem('redirectToCart')){
                       keep Learing...
                     </h1>
                     <button
-                      className="btn"
+                      className="btn1"
                       onClick={() => {
                         navigate("/onlineCourse");
                       }}
@@ -430,9 +449,11 @@ if(localStorage.getItem('redirectToCart')){
 
                       <article class="px-4 pb-4 flex">
                         <img
+                        key={plan.id}
                           className="w-full h-[200px] rounded-2xl opacity-95 mq925:aspect-video mq925:h-[200px] relative  object-cover"
                           alt=""
                           src={`${API_URL}${plan.Cover.data.attributes.url}`}
+                          onClick={()=>handlePlay(plan.courseVideo.data.attributes.url)}
                         />
                         <div className="absolute flex bottom- p-2  z-50 bg-gray1  rounder-lg text-white gap-1 justify-center items-center text-center ">
                           <div className="justify-center items-center text-center ">

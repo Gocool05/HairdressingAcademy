@@ -113,10 +113,10 @@ console.log(carts, 'checking carts ')
     <>
     <NavBar/>
     {carts[0] ? (
-<div className="h-screen" >
-        <div id="main-content" className="flex items-center max-h-screen justify-center mt-10  text-white">
+<div className="h-screen bg-bgwhite" >
+        <div id="main-content" className="flex items-center max-h-screen justify-center pt-20  text-gray1">
       <div id="content-area" className="flex mq925:flex-wrap gap-10 mq925:gap-1 ">
-        <div id="left-area" className="w-[60%] mq925:w-full mq925:m-7 bg-gray1 p-6 rounded-lg">
+        <div id="left-area" className="w-[60%] mq925:w-full mq925:m-7 bg-white drop-shadow-2xl p-6 rounded-lg">
           <h1 className="main-title">Basket</h1>
           <div className="entry-content">
             <div className="cart-items">
@@ -141,7 +141,7 @@ console.log(carts, 'checking carts ')
                           <p>{cart.attributes.CheckoutLabel}</p>
                         </div>
                         <div className="cart-item-actions">
-                          <button aria-label="Remove Full Cutting Package from basket" onClick={() => removeCartItem(cart.id)} >Remove item</button>
+                          <button aria-label="Remove Full Cutting Package from basket" className="btn1" onClick={() => removeCartItem(cart.id)} >Remove item</button>
                         </div>
                       </div>
                     </td>
@@ -154,7 +154,7 @@ console.log(carts, 'checking carts ')
           </div>
         </div>
         <div className=" w-[30%] max-h-max mq925:w-full mq925:m-7">
-          <div className="cart-totals flex flex-col  justify-between gap-9 bg-gray1 p-6 rounded-lg">
+          <div className="cart-totals flex flex-col  justify-between gap-9 bg-white drop-shadow-2xl p-6 rounded-lg">
             <div className="basket-totals">
               <h2 className="basket-totals-heading">Basket totals</h2>
              
@@ -171,7 +171,7 @@ console.log(carts, 'checking carts ')
                 <div> ₹{price}</div>
               </div>
             </div>
-            <button onClick={handlePayment} className=" btn  mb-3 bg">
+            <button onClick={handlePayment} className=" btn1  mb-3 bg">
             Proceed to Checkout
             </button>
           </div>
