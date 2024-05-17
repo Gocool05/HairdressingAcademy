@@ -222,11 +222,11 @@ if(localStorage.getItem('redirectToCart')){
           <h1 className="text-gray1 pl-3">{course.CourseName}</h1>
           <div className="ml-[-12px] w-[1344px] flex flex-row mq925:flex-col items-start gap-12 justify-start max-w-[102%] shrink-0 mq1150:flex-wrap">
            
-          <div className="flex flex-col items-start justify-start py-0 px-6 box-border min-w-[60%] mq800:min-w-full mq450:gap-[16px] gap-[31px] mq1350:max-w-full">
+          <div className="flex flex-col items-start justify-start py-0 pl-6 box-border min-w-[60%] mq800:min-w-full mq450:gap-[16px] gap-[31px] mq1350:max-w-full">
             <div className="w-full">
               {isPlaying && lessonVideoUrl ? (
                 <video
-                  className="w-full h-[400px] mq925:aspect-video relative overflow-hidden shrink-0 object-cover"
+                  className="w-full h-[400px] mq925:h-auto mq925:aspect-video relative overflow-hidden shrink-0 object-cover"
                   controls
                   key={videoKey}
                   autoPlay

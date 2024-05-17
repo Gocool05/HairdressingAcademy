@@ -143,12 +143,12 @@ console.log('selectedImageIndex:', selectedImageIndex);
                    <div className="fixed top-0 left-0 w-screen h-screen flex justify-center items-center bg-black bg-opacity-75">
                    <div className=" rounded-lg w-auto-auto">
                      <div className="relative">
-                       <button className="absolute top-0 right-0 m-4 text-white cursor-pointer" onClick={closeModal}>
+                       <button className="absolute top-0 right-0 m-4 bg-transparent font-bold text-white cursor-pointer" onClick={closeModal}>
                          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
                          </svg>
                        </button>
-                       <img className="mx-auto max-h-[500px] mq925:max-h-[400px]: max-w-full" src={images[selectedImageIndex].src} alt="Full-screen" />
+                       <img className="mx-auto max-h-[500px] mq925:max-h-[400px]: max-w-full " src={images[selectedImageIndex].src} alt="Full-screen" />
                      </div>
                      <div className="flex justify-between mt-2 bg-transparent px-4">
                        <button className="bg-gray-800 text-white px-4 py-2 rounded-md btn" onClick={prevImage}>Previous</button>
