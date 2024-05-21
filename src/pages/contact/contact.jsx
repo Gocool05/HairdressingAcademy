@@ -11,7 +11,7 @@ const Contact = () => {
     <NavBar/>
       <section className='contacts bg-bgwhite  px-14 py-14 flex gap-5 mq925:px-6 mq925:flex-col'>
           <div className='left flex w-[50%] mq925:w-full'>
-            <iframe className="w-full" src={map}></iframe>
+            <iframe className="w-full " src={map}></iframe>
           </div>
           <div className=' right items-start text-gray1 justify-start w-[50%] mq925:w-full'>
             <h1>Contact us</h1>

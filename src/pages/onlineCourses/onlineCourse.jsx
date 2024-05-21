@@ -62,8 +62,8 @@ if (error) return <div>An error occurred: {error.message}</div>;
     </div>
   </div>
 
-  <div className="self-stretch  flex flex-col items-center justify-start py-5  px-5  box-border gap-[1px] max-w-full z-[1] text-smi text-gray1">
-           <div className="w-[751.1px] relative  flex items-center justify-center max-w-full shrink-0">
+  <div className="self-stretch  flex flex-col items-center justify-start py-1  px-5  box-border gap-[1px] max-w-full z-[1] text-smi text-gray1">
+           <div className="w-[751.1px] relative font-bold flex items-center justify-center max-w-full shrink-0">
            Learn the newest techniques from the Godfather of Hair Design himself. Get 25 years of experience packed into the ultimate online masterclass!
              </div>
          </div>
