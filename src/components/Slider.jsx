@@ -42,7 +42,7 @@ const [imgLoading,setImgLoading] = useState(true);
 {slider && slider.map((slide)=>(
     <SwiperSlide key={slide.id}>
         <div className="slide-content">
-          <img src={`${API_URL}${slide.attributes.Image.data.attributes.url}`} className="kenburns-bottom" alt="Slider Image 1" />
+          <img src={`${API_URL}${slide.attributes.Image.data.attributes.url}`} className="kenburns-bottom bg-gradient-to-t from-black" alt="Slider Image 1" />
           <div className="overlays">
           <div className="overlays-content">
             <h2 className="flicker-1">{slide.attributes.Title}</h2>

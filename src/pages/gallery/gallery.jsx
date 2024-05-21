@@ -127,7 +127,7 @@ const prevImage = () => {
                     <div id="imageGallery">
                         {images.map((image, index) => (
                             <img
-                            className="h-[200px] w-auto "
+                            className="h-[200px] w-auto bg-gradient-to-t from-black"
                                 key={index}
                                 src={image.src}
                                 alt={`Image ${index}`}
