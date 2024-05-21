@@ -80,40 +80,53 @@ const Home = async() => {
       <NavBar/>
     <Slider/> 
     <div className="self-stretch  flex flex-col items-center justify-start py-5  px-5  box-border gap-[1px] max-w-full z-[1] text-smi text-gray1">
-           <div className="w-[751.1px] relative  flex items-center justify-center max-w-full shrink-0">
-           Learn the newest techniques from the Godfather of Hair Design himself. Get 25 years of experience packed into the ultimate online masterclass!
+           <div className="w-[751.1px] relative font-bold  flex items-center justify-center max-w-full shrink-0">
+           Online Learning at IHF by Javed Khan for Hairdressers Empowering Your Salon Career with Affordable, Flexible Learning in Hindi
              </div>
          </div>
        <main className="frame-parent my-10 mx-9 ">
        <section className="self-stretch flex flex-col mq925:px-0 items-center justify-center  pb-10 box-border max-w-full">
        {/* <div className=" flex flex-col items-center justify-center  box-border  max-w-full shrink-0 text-left text-6xl text-[#C5C6C7]  mq925:gap-[20px] mq925:pt-[42px] mq925:px-[25px] mq925:pb-[25px] mq925:box-border mq1350:pt-[65px] mq1350:px-[210px] mq1350:pb-[39px] mq1350:box-border"> */}
-         <div className=" flex flex-row items-start  justify-evenly px-[150px] mb-10 mq925:mb-0  mq925:flex mq925:flex-col  gap-11 max-w-full  ">
+         <div className=" flex flex-row items-start  justify-evenly px-[150px] mb-10 mq925:mb-0  mq925:px-2 mq925:flex mq925:flex-col  gap-11 max-w-full  ">
            <img
-             className="h- flex-1 opacity-80 relative max-w-full rounded-xl drop-shadow-2xl overflow-hidden object-cover min-w-[300px]  "
+             className="h- flex-1  relative max-w-full rounded-xl drop-shadow-2xl overflow-hidden object-cover min-w-[400px] mq925:min-w-[300px]  "
              alt=""
              src={`${API_URL}${abtImage}`}
            />
            {/* <div className=" flex flex-col items-start justify-start gap-[15px] min-w-[498.7px] max-w-full  "> */}
              <div className="flex flex-col items-start gap-5 justify-start ">
-               <h1 className="m-0 relative mq925:ml-0 uppercase  font-normal   mq450:text-xl">
+               <h1 className="m-0 relative mq925:ml-0 uppercase  font-bold   mq450:text-xl">
                  {about.Title}
                </h1>
    
                <div className=" flex flex-col text-justify gap-3 text-xl ">
-                {AbtDesc.map((abt)=>(
+                {/* {AbtDesc.map((abt)=>( */}
+                   {/* ↦ {abt.children[0].text} */}
+                {/* ))}  */}
                  <div className="relative list-none ">
                    <div className="">
-                   ↦ {abt.children[0].text}
+                   Welcome to IHF, the ultimate platform for online learning designed specifically for hairdressers by the renowned educator Javed Khan. Our mission is to make learning hairdressing accessible and affordable for everyone, especially for those who cannot afford to spend a lot on education. Whether you are an aspiring hairdresser looking to start your career or a seasoned stylist seeking to upgrade your skills, our courses are designed with you in mind.
                    </div>
                  </div>
-                ))} 
+                 <div className="relative list-none ">
+                   <div className="">
+                  <span className='font-bold'>Our Mission:</span> At IHF, we understand the financial and time constraints faced by many aspiring and professional hairdressers. Our mission is to provide high-quality, affordable education that fits into your busy schedule. We aim to empower hairdressers with the knowledge and skills they need to excel in their careers without breaking the bank.
+                   </div>
+                 </div>
+                 <div className="relative list-none ">
+                   <div className="">
+                  <span className='font-bold'>Courses Tailored for Hairdressers :</span> Our beginner courses provide a solid foundation in hairdressing. Learn the basics of haircuts, blow-drying, styling, coloring, creative coloring, chemical treatments, hair spa and treatments, hair and scalp analysis, and the art of product selling. Each course is designed to be comprehensive and easy to understand.
+                   </div>
+                 </div>
+                 <div className="relative list-none ">
+                   <div className="">
+                  <span className='font-bold'>Upgrade Your Existing Skills:</span> For experienced hairdressers, our advanced courses cover the latest techniques and trends in the industry. Stay ahead of the competition with up-to-date knowledge and practical skills that can be directly applied in your salon.
+                   </div>
+                 </div>
    
                </div>
              </div>
            </div>
-         {/* </div> */}
-   
-   
          <div className="self-stretch flex flex-column items-start justify-center drop-shadow-2xl px-[150px] mq925:px-0 py-11 box-border max-w-full shrink-0 z-[1] mt-[-0.1px] text-center text-lg text-gray1 font-open-sans mq925:pb-[0px] mq925:box-border">
      <div className="w-auto grid grid-cols-3  gap-[5em] max-w-full mq450:pt-[60px] mq450:pb-[26px] mq450:box-border mq925:gap-[30px] mq925:justify-center mq925:grid-cols-[minmax(240px,_1fr)]">
        {abtCard.slice(-3).map((card) => (
@@ -134,28 +147,83 @@ const Home = async() => {
        ))}
      </div>
    </div>
-       {/* </div> */}
-           </section>
-           <div className=" flex flex-row items-start  justify-evenly px-[150px] mb-10 mq925:mb-0 mq925:px-5 mq925:flex mq925:flex-col  gap-11 max-w-full  ">
-           
+
+
+   <div className=" flex flex-row items-start  justify-evenly px-[150px] my-10 mq925:mt-10 mq925:px-2  mq925:flex mq925:flex-col-reverse  gap-11 max-w-full  ">
            {/* <div className=" flex flex-col items-start justify-start gap-[15px] min-w-[498.7px] max-w-full  "> */}
              <div className="flex flex-col items-start gap-5 justify-start ">
-               <h1 className="m-0 relative mq925:ml-0 uppercase font-normal mq450:text-xl">
-               {benifits.Title}
-               </h1>
-   
                <div className=" flex flex-col text-justify gap-3 text-xl ">
-               {description.map((ben)=>(
-               <div className="relative list-none ">
-               <div className="">
-               ↦ {ben.children[0].text}
+               <h1 className="m-0 relative mq925:ml-0 uppercase font-bold mq450:text-xl">
+               BEnifits of ihf
+               </h1>
+                 <div className="relative list-none ">
+                   <div className="">
+                  <span className='font-bold'>Learning Made Simple Courses Available in Hindi:</span> All our courses are available in Hindi, ensuring that language is never a barrier to your learning. This makes our courses accessible to a wider audience, allowing you to fully grasp the concepts and techniques being taught
+                   </div>
                  </div>
-               </div>
-           ))}
+                 <div className="relative list-none ">
+                   <div className="">
+                  <span className='font-bold'>Pre-Recorded Video Lectures and Demonstrations:</span> Our courses feature pre-recorded video lectures and demonstrations that you can access anytime, anywhere. This flexible learning approach allows you to learn at your own pace, balancing your education with your professional and personal commitments.
+                   </div>
+                 </div>
                </div>
              </div>
              <img
-             className="h- flex-1 opacity-80 relative mb-10 max-w-full drop-shadow-2xl rounded-xl overflow-hidden object-cover min-w-[300px]  "
+             className="h- flex-1 relative max-w-full rounded-xl drop-shadow-2xl overflow-hidden object-cover min-w-[400px] mq925:min-w-[100%]  "
+             alt=""
+             src='https://api.ihfbyjavedkhan.com/uploads/DSC_6680_20a23ece48.JPG'
+           />
+           </div>
+
+       {/* </div> */}
+           </section>
+           <div className=" flex flex-row items-start  justify-evenly px-[150px] mb-10 mq925:mb-0 mq925:px-2 mq925:flex mq925:flex-col-reverse  gap-11 max-w-full  ">
+           
+           {/* <div className=" flex flex-col items-start justify-start gap-[15px] min-w-[498.7px] max-w-full  "> */}
+             <div className="flex flex-col items-start gap-5 justify-start ">
+               <h1 className="m-0 relative mq925:ml-0 uppercase font-bold mq450:text-xl">
+               Why Choose IHF for Your Hairdressing Education?
+               </h1>
+   
+               <div className=" flex flex-col text-justify gap-3 text-xl ">
+                 <div className="relative list-none ">
+                   <div className="">
+                  <span className='font-bold'>Affordable Education:</span> We believe that financial constraints should not hinder your education. Our courses are priced affordably to ensure that everyone has access to high-quality hairdressing education.
+                   </div>
+                 </div>
+                 <div className="relative list-none ">
+                   <div className="">
+                  <span className='font-bold'>Expert Instructor:</span> Learn from Javed Khan, a distinguished educator with profound insights into the hairdressing industry and a passion for teaching.
+                   </div>
+                 </div>
+                 <div className="relative list-none ">
+                   <div className="">
+                  <span className='font-bold'>Comprehensive Curriculum:</span> Our courses cover all aspects of hairdressing, including cuts, blow-drying, styling, coloring, chemical treatments, hair spa, hair and scalp analysis, and product selling.
+                   </div>
+                 </div>
+                 <div className="relative list-none ">
+                   <div className="">
+                  <span className='font-bold'>Flexible Learning:</span> With our pre-recorded lessons available in Hindi, you have the freedom to learn at your own convenience, fitting your education around your busy schedule.
+                   </div>
+                 </div>
+                 <div className="relative list-none ">
+                   <div className="">
+                  <span className='font-bold'>Supportive Community:</span> We provide extensive support through detailed study materials and interactive forums where you can connect with peers and instructors.
+                   </div>
+                 </div>
+                 <div className="relative list-none ">
+                   <div className="">
+                  <span className='font-bold'>Transform Your Career with IHF:</span> Join IHF today and take the first step towards a successful career in the salon industry. Whether you are just starting out or looking to enhance your skills, our courses offer the perfect blend of theory and practical knowledge. Experience the convenience of online learning and the expertise of Javed Khan, all designed to help you achieve your professional goals.
+                   </div>
+                 </div>
+                 {/* <div className="relative list-none ">
+                   <div className="">Explore our range of hairdressing courses on our website and begin your journey to becoming a top-notch hairdresser in the Indian salon market. Elevate your skills, overcome challenges, and transform your career with IHF.
+                   </div>
+                 </div> */}
+               </div>
+             </div>
+             <img
+             className="h- flex-1  relative mb-10 max-w-full drop-shadow-2xl rounded-xl overflow-hidden object-cover min-w-[400px] mq925:min-w-[90%]  "
              alt=""
              src={`${API_URL}${benifitsImage}`}
            />
@@ -163,7 +231,7 @@ const Home = async() => {
        <section className="divet-pb-row-wrapper">
          <div className="divet-pb-row ">
            {cards.map((card)=>(
-             <div  className="divet-pb-blurb-content1 drop-shadow-2xl " key={card.id}>
+             <div  className="divet-pb-blurb-content1 drop-shadow-2xl cursor-pointer " key={card.id}>
                <a onClick={()=>{navigate(`${card.href}`)} }>
              <img
                className="link-events-300x300png"

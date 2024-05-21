@@ -52,10 +52,10 @@ if (error) return <div>An error occurred: {error.message}</div>;
       <div className="divet-pb-slide">
       <div className="heading-3-container mq925:py-5">
           <span className="heading-3-container1">
-            <h1 className="text-[40px] mq925:text-[20px]">
+            <h1 className="text-[60px] mq925:text-[20px] text-gray1 drop-shadow-2xl">
             Online Courses
             </h1>
-            <p className="hairdressing-academy text-xl mq925:leading-4 mq925:text-[10px]">In these courses, Javed presents various styles and techniques for creating stunning hair transformations. Each lesson is delivered in a step-by-step format to guide you through the process</p>
+            {/* <p className="hairdressing-academy text-xl mq925:leading-4 mq925:text-[10px]">In these courses, Javed presents various styles and techniques for creating stunning hair transformations. Each lesson is delivered in a step-by-step format to guide you through the process</p> */}
           </span>
         </div>
       </div>
@@ -76,7 +76,7 @@ if (error) return <div>An error occurred: {error.message}</div>;
       key={index} 
       className="relative flex flex-col items-start justify-start pt-0 px-0 box-border max-w-full shrink-0 mq975:pb-[23px] mq975:box-border mq1500:pb-9 mq1500:box-border"
     >   
-      <h1 className='ml-[200px]'>{Type.attributes.Type}</h1>
+      <h1 className='ml-[200px] mq925:ml-7'>{Type.attributes.Type}</h1>
       <div className="flex flex-row mq925:flex-col flex-wrap items-start justify-start py-1 px-[180px] mq450:px-5 gap-[20px] mq975:py-[57px] mq975:px-[10px] mq975:box-border">
         <>
           {Type.attributes.courses && Type.attributes.courses.data.map((card, index) => (

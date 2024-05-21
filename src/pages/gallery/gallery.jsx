@@ -113,8 +113,8 @@ const Album = () => {
 const prevImage = () => {
     setSelectedImageIndex((prevIndex) => (prevIndex + images.length - 1) % images.length);
 };
-console.log('modalOpen:', modalOpen);
-console.log('selectedImageIndex:', selectedImageIndex);
+// console.log('modalOpen:', modalOpen);
+// console.log('selectedImageIndex:', selectedImageIndex);
   return (
     <div className="container overflow-x-hidden bg-bgwhite">
             <NavBar />

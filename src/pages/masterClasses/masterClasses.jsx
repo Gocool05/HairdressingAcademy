@@ -37,12 +37,12 @@ if (error) return <div>An error occurred: {error.message}</div>;
     <div className="divet-pb-module">
     <div className="divet-pb-slide">
       <div className="heading-3-container mq925:py-5">
-          <div className="heading-3-container1 ">
-            <h1 className="text-[40px] mq925:text-[20px]">
-            Online Masterclasses
+      <span className="heading-3-container1">
+            <h1 className="text-[60px] mq925:text-[20px] text-gray1 drop-shadow-2xl">
+            Masterclass Courses
             </h1>
-            <p className="hairdressing-academy text-xl mq925:leading-4 mq925:text-[10px]">The Masterclass offers a range of styles and techniques for creating beautiful hair transformations, as well as valuable business advancement advice from the Master Javed</p>
-          </div>
+            {/* <p className="hairdressing-academy text-xl mq925:leading-4 mq925:text-[10px]">In these courses, Javed presents various styles and techniques for creating stunning hair transformations. Each lesson is delivered in a step-by-step format to guide you through the process</p> */}
+          </span>
         </div>
       </div>
     </div>

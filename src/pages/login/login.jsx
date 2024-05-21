@@ -7,8 +7,8 @@ const Login = () => {
     <Container className=''>
     <div style={{top: 0,left: 0,width: "100%",height: "100%",position: "absolute",zIndex: -1,backgroundColor: "rgba(0, 0, 0, 0.6)"}}></div>
     <CTA>
-      {/* <CTALogoOne src="https://www.moviemads.com/images/Moviemads%20Logo.png" alt="" /> */}
-      <h1 className='text-[60px] text-white items-center justify-center m-0 p-0'>IHF by Javed khan</h1>
+      <CTALogoOne src="https://res.cloudinary.com/dx78kzenz/image/upload/v1716273651/ihf_PNG_rqqrku.png" alt="" />
+      {/* <h1 className='text-[60px] text-white items-center justify-center m-0 p-0'>IHF by Javed khan</h1> */}
       <SignUp  onClick={() =>
         (window.location =`${API_URL}/api/connect/google`)}>LOGIN</SignUp>
       <Description>
@@ -37,7 +37,7 @@ const Container = styled.div`
     background-image: url("https://api.ihfbyjavedkhan.com/uploads/DSC_6591_c29ce19f4d.JPG");
 
     @media (max-width:756px) {
-      background-image: url("/images/miniBg.jpg");
+      background-image: url("https://api.ihfbyjavedkhan.com/uploads/DSC_6591_c29ce19f4d.JPG");
     }
     content: "";
     position: absolute;
@@ -61,7 +61,12 @@ const CTA = styled.div`
   backdrop-filter: saturate(180%) blur(10px);
 `;
 
-const CTALogoOne = styled.img``;
+const CTALogoOne = styled.img`
+height:150px;
+display-flex;
+align-items: center;
+justify-content: center;
+`;
 
 const SignUp = styled.a`
   cursor: pointer;

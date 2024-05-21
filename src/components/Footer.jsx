@@ -32,10 +32,9 @@ const Footer = () => {
     <footer className=" bg-gray1 ">
     <div className=" px-6 py-8 ">
         <div className="fleX flex-col items-center text-center">
-            {/* <a href="#"> */}
-                <img className="w-auto h-20" src="https://res.cloudinary.com/dx78kzenz/image/upload/v1715678858/ihf_PNG_wd48ym.png" alt="" />
-                {/* <h1 className='text-white my-2'>IHF by Javed khan</h1> */}
-            {/* </a> */}
+            <a href="/">
+                <img className="w-auto h-20" src="https://res.cloudinary.com/dx78kzenz/image/upload/v1716273651/ihf_PNG_rqqrku.png" alt=""/>
+            </a>
 
             <div className="flex  gap-6 justify-center mt-6 -mx-4  mq925:m-0 ">
             {footer.map((foot) =>(
@@ -46,7 +45,6 @@ const Footer = () => {
                 </div>
               ))}
             </div>
-
         </div>
 
         <hr className="my-6 mq925:my-3 w-[90%] border-t-[1px] border-white" />

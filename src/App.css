@@ -121,3 +121,13 @@ body {
   filter: brightness(.7);
   transform: scale(.98);
  }
+
+
+ @media screen and (max-width: 650px) {
+  .btn1{
+    font-size: 10px;
+   }
+  .btn{
+    font-size: 10px;
+   }
+ }
