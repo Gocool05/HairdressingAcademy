@@ -22,7 +22,7 @@ const [imgLoading,setImgLoading] = useState(true);
         return response.data.data;
       }
       const {data:slider,isLoading,error} = useQuery('Slider',HomeSlider);
-      if (isLoading) return <SkeletonAvatar active shape="square" size={30}/>
+      // if (isLoading) return <SkeletonAvatar active shape="square" size={30}/>
       if (error) return <div>An error occurred: {error.message}</div>;
   return (
     <Swiper 
