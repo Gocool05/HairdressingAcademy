@@ -83,7 +83,7 @@ if (error) return <div>An error occurred: {error.message}</div>;
             <Link 
               to={'/details/course/' + card.id} 
               onClick={() => { handleOnclick('/details/course/' + card.id) }} 
-              className='no-underline'
+              className='no-underline transform transition duration-300 hover:scale-105'
               key={card.id} // Move key here to the Link element
             >
               <div className="w-[400px] h-[350px] mq925:w-[100%] mq925:h-auto backdrop-blur-xl rounded-xl bg-opacity-90 bg-white drop-shadow-2xl backdrop-filter flex flex-col items-start justify-start pt-0 px-0 pb-[17.9px] box-border gap-5 text-left text-base text-gray1 font-open-sans">

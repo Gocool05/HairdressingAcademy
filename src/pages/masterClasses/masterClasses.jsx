@@ -58,7 +58,7 @@ if (error) return <div>An error occurred: {error.message}</div>;
        
        {courses && courses.map((card)=>(
         
- <Link to={'/details/course/'+card.attributes.course.data.id} className='no-underline'>
+ <Link to={'/details/course/'+card.attributes.course.data.id} className='no-underline transform transition duration-300 hover:scale-105'>
  <div key={card.id} className="w-[400px] h-[350px] mq925:w-[100%] mq925:h-auto backdrop-blur-xl rounded-xl bg-opacity-90 bg-white drop-shadow-2xl backdrop-filter flex flex-col items-start justify-start pt-0 px-0 pb-[17.9px] box-border gap-[19.6px] text-left text-base text-gray1  font-open-sans">
  <img
    className="self-stretch h-[250px] rounded-t-2xl bg-gradient-to-t from-black relative max-w-full overflow-hidden shrink-0 object-cover"
