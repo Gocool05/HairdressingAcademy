@@ -327,7 +327,7 @@ if(localStorage.getItem('redirectToCart')){
               </div>
             </div>
           </div>
-            <div className="w-[448px] flex   flex-col items-start justify-start  px-6 pb-[359.3px] text-gray1 box-border gap-[24px]  text-5xl mq800:pb-[152px] mq800:box-border mq800:min-w-full mq1150:w-full mq1350:pb-[234px] mq1350:box-border mq1350:max-w-full">
+            <div className="w-[448px] flex   flex-col items-start justify-start  px-6 mq925:pr-0 pb-[359.3px] text-gray1 box-border gap-[24px]  text-5xl mq800:pb-[152px] mq800:box-border mq800:min-w-full mq1150:w-full mq1350:pb-[234px] mq1350:box-border mq1350:max-w-full">
               <div className="self-stretch rounded-md bg-white flex flex-col items-start justify-start pt-0 px-0 pb-px drop-shadow-2xl ">
                 {isBought ? (
                   <div className="flex flex-col min-w-full gap-2 mt-4 mb-4 items-center justify-center pt-0 px-0 pb-[0.7px]">
