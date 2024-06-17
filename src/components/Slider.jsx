@@ -45,7 +45,7 @@ const [imgLoading,setImgLoading] = useState(true);
           <img src={`${API_URL}${slide.attributes.Image.data.attributes.url}`} className="kenburns-bottom bg-gradient-to-t from-black" alt="Slider Image 1" />
           <div className="overlays">
           <div className="overlays-content">
-            <h2 className="flicker-1">{slide.attributes.Title}</h2>
+            <h2 className="flicker-1">{slide.attributes.Title}<span className="text-lg mt-1 mq450:hidden">(Educational Director)</span></h2>
             <p>{slide.attributes.Description}</p>
             <button className="btn bottom-4" onClick={()=>{navigate(`${slide.attributes.ButtonHref}`)}} >{slide.attributes.ButtonLabel}</button>
             <div class="iconSlider ">
