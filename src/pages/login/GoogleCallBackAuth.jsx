@@ -36,6 +36,7 @@ const GoogleCallBackAuth = () => {
     localStorage.setItem('EmailId',auth?.user.email)
     localStorage.setItem('JwtToken',jwtToken)
     console.log(jwtToken,'token');
+    
     const redirectUrl = localStorage.getItem('redirectToCart');
 
     if(redirectUrl){

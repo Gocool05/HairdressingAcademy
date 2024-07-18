@@ -10,7 +10,7 @@ import Scissor, { Scissor1 } from "./Icons";
 const API_URL = process.env.REACT_APP_API_URL;
 const JWT = localStorage.getItem("JwtToken");
 // Details changed 
-const Details = () => {
+const MasterDetails = () => {
   const { id } = useParams();
   const queryClient = useQueryClient();
   const navigate = useNavigate();
@@ -170,6 +170,7 @@ if(localStorage.getItem('redirectToCart')){
 
  
   const [isPreview,setIsPreview] = useState(true);
+  
   const handlePlay = (videoUrl) => {
     window.scrollTo({
       top: 0,
@@ -215,27 +216,25 @@ if(localStorage.getItem('redirectToCart')){
     );
   if (error) return <section class="flex items-center h-screen p-16 ">
   <div class="container flex flex-col items-center ">
-      <div class="flex flex-col gap-2 max-w-md text-center">
-          <h1 class="font-extrabold text-[5rem] my-0 p-0 text-white">
-            404
-          </h1>
-          <p class="text-2xl my-0 text-white">Sorry, we couldn't find this page.</p>
-          <a href="/" class="btn">Back to home</a>
+      <div class="flex flex-col gap-6 max-w-md text-center">
+          <h2 class="font-extrabold text-9xl text-gray-600 dark:text-gray-100">
+              <span class="sr-only">Error</span>404
+          </h2>
+          <p class="text-2xl md:text-3xl dark:text-gray-300">Sorry, we couldn't find this page.</p>
+          <a href="/" class="btn1">Back to home</a>
       </div>
   </div>
-</section>;
+</section>
 
   return (
     <>
       <NavBar />
       <div className="w-full  bg-[#D6D6D6] flex flex-row items-start justify-center py-0 pb-20 px-5 box-border leading-[normal] tracking-[normal]">
-        <section className="w-[1320px] flex flex-col items-start justify-start   max-w-[1320px] text-left text-xl  mq800:gap-[22px] mq1350:max-w-full">
-          <h1 className="text-gray1 pl-3">{course.CourseName}</h1>
+        <section className="w-[1320px] flex flex-col items-start justify-start max-w-[1320px] text-left text-xl  mq800:gap-[22px] mq1350:max-w-full">
+          <h1 className="text-gray1 pl-3">Masterclass Courses</h1>
           <div className="ml-[-12px] w-[1344px] flex flex-row mq925:flex-col items-start gap-12 justify-start max-w-[102%] shrink-0 mq1150:flex-wrap">
-           
           <div className="flex flex-col items-start justify-start py-0 pl-6 box-border min-w-[60%] mq800:min-w-full mq450:gap-[16px] gap-[31px] mq1350:max-w-full">
             <div className="w-full">
-              {isPlaying && lessonVideoUrl ? (
                 <video
                   className="w-full h-[400px] mq925:h-auto mq925:aspect-video relative overflow-hidden shrink-0 object-cover"
                   controls
@@ -245,73 +244,22 @@ if(localStorage.getItem('redirectToCart')){
                   <source src={`${API_URL}${lessonVideoUrl}`} type="video/mp4" />
                   Your browser does not support the video tag.
                 </video>
-              ) : (
-                <div className="relative">
-                  <img
-                    className="w-full h-[400px] rounded-2xl opacity-95 mq925:aspect-video mq925:h-[200px] relative object-cover"
-                    alt=""
-                    src={`${API_URL}${image}`}
-                  />
-                  {/* {isBought ? ( */}
-
-                    <button
-                      className="absolute rounded-[50%] p-3 bg-gray1 cursor-pointer top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
-                      onClick={() => handlePreviewPlay()}
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        strokeWidth={1.5}
-                        stroke="currentColor"
-                        className="w-10 text-white"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.347a1.125 1.125 0 0 1 0 1.972l-11.54 6.347a1.125 1.125 0 0 1-1.667-.986V5.653Z"
-                        />
-                      </svg>
-                    </button>
-             {/* ) : (
-                  <button
-                      className="absolute rounded-[50%] p-3 bg-gray1 top-1/2 left-1/2 cursor-pointer transform -translate-x-1/2 -translate-y-1/2"
-                      onClick={() => handlePlay(video)}
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        strokeWidth={1.5}
-                        stroke="currentColor"
-                        className="w-10 text-white"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z"
-                        />
-                      </svg>
-                    </button> 
-                   )}  */}
-                </div>
-              )}
             </div>
   
             <div className="relative flex flex-col items-start justify-start pb-10 px-0 box-border gap-[32px] max-w-full mq450:gap-[16px] mq450:box-border mq1150:box-border">
               <div className="self-stretch flex flex-col items-start justify-start gap-[11.2px] shrink-0">
                 <div className="self-stretch flex flex-col items-start justify-start pt-0 px-0 pb-2.5">
                   <h2 className="self-stretch m-0 relative text-gray1 leading-[32px] mq450:text-base mq450:leading-[26px]">
-                    About Course
+                     Course Structure
                   </h2>
                 </div>
                 <div className="self-stretch flex flex-col items-start justify-start pt-0 pb-[0.8px] pl-0 text-base text-gray1">
                   {Desc.map((desc, index) => (
                     <div key={index} className="self-stretch flex flex-row items-start justify-start shrink-0">
                       {desc.children.map((child, index) => (
-                        <span className="m-0   flex items-center justify-center ">
+                        <span className="m-0 flex items-center justify-center ">
                           <Scissor1/>
-                           <p className="my-0 " key={index}>
+                           <p className="my-0" key={index}>
                              {child.text}
                              </p>
                           </span>
@@ -323,7 +271,7 @@ if(localStorage.getItem('redirectToCart')){
               <div className="self-stretch flex flex-col items-start justify-start mq925:hidden gap-[11.2px] shrink-0">
                 <div className="self-stretch flex flex-col items-start justify-start pt-0 px-0 pb-2.5">
                   <h2 className="self-stretch m-0 relative text-gray1 leading-[32px] mq450:text-base mq450:leading-[26px]">
-                    What Will You Learn?
+                  What you’ll learn
                   </h2>
                 </div>
                 <div className="self-stretch flex flex-col items-start justify-start pt-0 pb-[0.8px] pr-[3px] pl-0 text-base text-gray1">
@@ -384,7 +332,7 @@ if(localStorage.getItem('redirectToCart')){
                         onClick={addToCart}
                         className="cursor-pointer py-[9px] px-5 bg-gray1 text-white self-stretch rounded-md flex flex-row items-center justify-center border-[1px] border-solid "
                       >
-                        Add to Cart
+                        Join us
                       </button>
                     )}
                   </div>
@@ -402,7 +350,7 @@ if(localStorage.getItem('redirectToCart')){
                       </div>
                       <div className="flex flex-col items-start justify-start">
                         <div className="relative leading-[26px] inline-block min-w-[69px]">
-                        {course.CourseName}
+                       Masterclass Course
                         </div>
                       </div>
                     </div>
@@ -416,7 +364,22 @@ if(localStorage.getItem('redirectToCart')){
                       </div>
                       <div className="flex-1 flex flex-col items-start justify-start min-w-[149px]">
                         <div className="relative leading-[26px]">
-                        English subtitles are included
+                            Duration: 8 hours
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="self-stretch flex flex-row items-end justify-start py-0  pl-0 mq450:pr-5 mq450:box-border">
+                      <div className="flex flex-col items-start justify-center pt-[4.2px] pb-[0.2px] pr-3 pl-0">
+                        <div className="flex flex-col items-start justify-start pt-0 px-0 pb-[7.6px]">
+                          <div className="flex flex-row items-start justify-start">
+                            <div className="h-3.5 w-3.5 relative overflow-hidden shrink-0" />
+                          </div>
+                        </div>
+                      </div>
+                      <div className="flex flex-col items-start justify-start">
+                        <div className="relative leading-[26px]">
+                          Online / Offline
                         </div>
                       </div>
                     </div>
@@ -430,73 +393,16 @@ if(localStorage.getItem('redirectToCart')){
                       </div>
                       <div className="flex flex-col items-start justify-start">
                         <div className="relative leading-[26px]">
-                          Certificate of completion
+                          Venue: Vellore Fort, Vellore, Tamilnadu - 632001
                         </div>
                       </div>
                     </div>
+
+
                   </div>
                 </div>
               </div>
-
-              <div className="self-stretch  flex flex-col items-start bg-white justify-start max-w-full text-base text-gray1">
-                <h2 className="px-5 m-0 mt-3">Lesson Plan</h2>
-                      {lessonPlan && lessonPlan.map((plan, index)=>(
-                <ul class="m-0 px-5 py-2 list-none min-w-[90%]" key={index}>
-                  <li className="drop-shadow-2xl bg-white mb-2  ">
-                    <details class="group">
-                      <summary class="flex items-center gap-3 px-4 py-3 justify-between font-medium marker:content-none hover:cursor-pointer">
-                        <span>{plan.Topic}</span>
-                        <span class="transition group-open:rotate-180">
-                          <svg
-                            className="h-6 "
-                            fill="none"
-                            height="24"
-                            shape-rendering="geometricPrecision"
-                            stroke="currentColor"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="1.5"
-                            viewBox="0 0 24 24"
-                            width="24"
-                          >
-                            <path d="M6 9l6 6 6-6"></path>
-                          </svg>
-                        </span>
-                      </summary>
-
-                      <article class="px-4 pb-4 flex">
-                        <img
-                        key={plan.id}
-                          className="w-full h-[200px] rounded-2xl opacity-95 mq925:aspect-video mq925:h-[200px] relative  object-cover"
-                          alt=""
-                          src={`${API_URL}${plan.Cover.data.attributes.url}`}
-                          onClick={()=>handlePlay(plan.courseVideo.data.attributes.url)}
-                        />
-                        <div className="absolute flex bottom- p-2  z-50 bg-gray1  rounder-lg text-white gap-1 justify-center items-center text-center ">
-                          <div className="justify-center items-center text-center ">
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              viewBox="0 0 24 24"
-                              fill="currentColor"
-                              className="w-6 h-6"
-                            >
-                              <path
-                                fillRule="evenodd"
-                                d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25ZM12.75 6a.75.75 0 0 0-1.5 0v6c0 .414.336.75.75.75h4.5a.75.75 0 0 0 0-1.5h-3.75V6Z"
-                                clipRule="evenodd"
-                              />
-                            </svg>
-                          </div>
-                          <div className=" font-semibold justify-center items-center mb-1 text-center  ">
-                           {plan.TimeStamp.substring(0,5)}
-                          </div>
-                        </div>
-                      </article>
-                    </details>
-                  </li>
-                </ul>
-                      ))}
-              </div>
+           
             </div>
           </div>
         </section>
@@ -506,4 +412,4 @@ if(localStorage.getItem('redirectToCart')){
   );
 };
 
-export default Details;
+export default MasterDetails;

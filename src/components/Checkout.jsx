@@ -108,7 +108,17 @@ console.log(carts, 'checking carts ')
 
 
       if (isLoading) return <div class="loader">Fetching..<span></span></div>
-      if (error) return <div>An error occurred: {error.message}</div>;
+      if (error) return <section class="flex items-center h-screen p-16 ">
+      <div class="container flex flex-col items-center ">
+          <div class="flex flex-col gap-2 max-w-md text-center">
+              <h1 class="font-extrabold text-[5rem] my-0 p-0 text-white">
+                404
+              </h1>
+              <p class="text-2xl my-0 text-white">Sorry, we couldn't find this page.</p>
+              <a href="/" class="btn">Back to home</a>
+          </div>
+      </div>
+    </section>;
   return (
     <>
     <NavBar/>

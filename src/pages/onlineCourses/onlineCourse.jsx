@@ -27,6 +27,7 @@ const navigate = useNavigate();
     return response.data.data;
   }
 const {data:categories,isLoading,error} = useQuery('Online',Online);
+
 console.log(categories, 'catorgories')
   const FAQ = async() =>{
     const response = await axios.get(`${API_URL}/api/faqs/1?populate=*`)
@@ -49,11 +50,11 @@ if (error) return <div>An error occurred: {error.message}</div>;
       <NavBar/>
       <div className="divet-pb-module-wrapper">
     <div className="divet-pb-module">
-      <div className="divet-pb-slide">
+      <div className="divet-pb-slide bg-gradient-to-t from-black">
       <div className="heading-3-container mq925:py-5">
           <span className="heading-3-container1">
-            <h1 className="text-[60px] mq925:text-[20px] text-gray1 drop-shadow-2xl">
-            Online Courses
+            <h1 className="text-[60px] mq925:text-[20px] text-white drop-shadow-2xl">
+            Online Courses for Hairdressers
             </h1>
             {/* <p className="hairdressing-academy text-xl mq925:leading-4 mq925:text-[10px]">In these courses, Javed presents various styles and techniques for creating stunning hair transformations. Each lesson is delivered in a step-by-step format to guide you through the process</p> */}
           </span>
@@ -63,7 +64,7 @@ if (error) return <div>An error occurred: {error.message}</div>;
   </div>
 
   <div className="self-stretch  flex flex-col items-center justify-start py-1  px-5  box-border gap-[1px] max-w-full z-[1] text-smi text-gray1">
-           <div className="w-[751.1px] relative font-bold flex items-center justify-center max-w-full shrink-0">
+           <div className="relative font-bold flex items-center justify-center max-w-full shrink-0">
            Learn the newest techniques from the Godfather of Hair Design himself. Get 25 years of experience packed into the ultimate online masterclass!
              </div>
          </div>

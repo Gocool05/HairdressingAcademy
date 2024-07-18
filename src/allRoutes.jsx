@@ -11,6 +11,7 @@ import GoogleCallBackAuth from './pages/login/GoogleCallBackAuth'
 import Album from './pages/gallery/gallery'
 import Details from './components/Details'
 import Checkout from './components/Checkout'
+import MasterDetails from './components/MasterDetails'
 
 const jwt = localStorage.getItem("JwtToken");
 const AllRoutes = () => {
@@ -28,6 +29,7 @@ const AllRoutes = () => {
     <Route path='/masterclass' element={<MasterClasses/>}/>
     <Route path='/onlineCourse' element={<OnlineCourse/>}/>
     <Route path='/details/course/:id' element={<Details/>}/>
+    <Route path='/masterDetails' element={<MasterDetails/>}/>
     <Route path='/gallery' element={<Album/>}/>
     <Route path='/contact' element={<Contact/>}/>
     <Route path='/myprofile' element={<MyProfile/>}/>

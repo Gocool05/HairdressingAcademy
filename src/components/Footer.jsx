@@ -57,8 +57,8 @@ const Footer = () => {
             <a href=''> <i class="fa fa-facebook"></i></a>
             <a href=''> <i class="fa fa-instagram"></i></a>
             <a href=''> <i class="fa-brands fa-youtube"></i></a>
-            <a href=''> <i class="fa-brands fa-x-twitter"></i></a>
-            <a href=''> <i class="fa fa-linkedin"></i></a>
+            {/* <a href=''> <i class="fa-brands fa-x-twitter"></i></a>
+            <a href=''> <i class="fa fa-linkedin"></i></a> */}
             </div>
             </div>
         </div>

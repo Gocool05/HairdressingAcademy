@@ -127,6 +127,8 @@ const Home = async() => {
                </div>
              </div>
            </div>
+
+           
          <div className="self-stretch flex flex-column items-start justify-center drop-shadow-2xl px-[150px] mq925:px-0 py-11 box-border max-w-full shrink-0 z-[1] mt-[-0.1px] text-center text-lg text-gray1 font-open-sans mq925:pb-[0px] mq925:box-border">
      <div className="w-auto grid grid-cols-3  gap-[5em] max-w-full mq450:pt-[60px] mq450:pb-[26px] mq450:box-border mq925:gap-[30px] mq925:justify-center mq925:grid-cols-[minmax(240px,_1fr)]">
        {abtCard.slice(-3).map((card) => (
@@ -135,6 +137,7 @@ const Home = async() => {
              <img
                className="self-stretch flex-1 relative max-w-full bg-gradient-to-t from-black overflow-hidden max-h-full object-cover"
                alt=""
+               onClick={()=>{navigate(`${card.href}`)}}
                src={`${API_URL}${card.Image.data.attributes.url}`}
              />
              <div className="self-stretch flex flex-row items-start justify-end py-0  mq450:pl-5 mq450:pr-5 mq450:box-border">
