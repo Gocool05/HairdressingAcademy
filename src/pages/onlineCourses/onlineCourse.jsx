@@ -28,13 +28,14 @@ const navigate = useNavigate();
   }
 const {data:categories,isLoading,error} = useQuery('Online',Online);
 
-console.log(categories, 'catorgories')
+// console.log(categories, 'catorgories')
+
   const FAQ = async() =>{
     const response = await axios.get(`${API_URL}/api/faqs/1?populate=*`)
     return response.data.data.attributes.Faq;
   }
   const {data:faqs} = useQuery('faq',FAQ);
-  console.log(faqs,'faqs');
+  // console.log(faqs,'faqs');
 
   const handleOnclick =(path) =>{
     navigate(path);

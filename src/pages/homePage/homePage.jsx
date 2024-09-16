@@ -30,7 +30,7 @@ useEffect(() => {
 }, []);
 
 var isValid = cards && about && benifits && description && AbtDesc && abtCard;
-console.log(isValid);
+// console.log(isValid);
 
 const Home = async() => {
   try{
@@ -39,14 +39,14 @@ const Home = async() => {
       setBenifits(response.data.data.attributes.BenefitsOfIHF);
       setBenifitsImage(response.data.data.attributes.BenefitsOfIHF.Image.data.attributes.url);
       setDescription(response.data.data.attributes.BenefitsOfIHF.Description[0].children);
-      console.log(benifits,'benifits');
+      // console.log(benifits,'benifits');
     }catch(e){
       console.error(e);
     }
     try{
       const response = await axios.get(`${API_URL}/api/pages/1?populate[cards][populate]=*`);
       setCards(response.data.data.attributes.cards);
-      console.log(response.data,'Home');
+      // console.log(response.data,'Home');
     }catch(e){
       console.error(e);
     }
@@ -59,7 +59,7 @@ const Home = async() => {
       setAbtImage(response.data.data.attributes.blocks[2].Image.data.attributes.url);
       // setAbtCard(abtCard.slice(-3));
       setAbtDesc(response.data.data.attributes.blocks[2].Description[0].children);
-      console.log(abtCard,'Blocks');
+      // console.log(abtCard,'Blocks');
     }catch(e){
       console.error(e);
     }

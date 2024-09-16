@@ -20,9 +20,6 @@ const Footer = () => {
         const response = await axios.get(`${API_URL}/api/global?populate[footer][populate]=*`);
         setFooter(response.data.data.attributes.footer[0].links);
         setSocial(response.data.data.attributes.footer[1].links)
-        console.log(response.data,'Footer-social');
-        console.log(footer,'Footer');
-
       }catch(e){
         console.error(e);
       }

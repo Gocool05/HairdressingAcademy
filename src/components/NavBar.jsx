@@ -128,7 +128,7 @@ const NavBar = () => {
       closable={false}
       width='250px'
       onClose={onClose}
-      visible={drawerVisible}
+      open={drawerVisible}
       className="text-white md:hidden  bg-gray1"
     >
           <div className="flex  items-center justify-start gap-8 max-w-full">

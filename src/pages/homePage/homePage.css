@@ -5,18 +5,19 @@
   transform: translate(-50%, -50%);
   width: 150px;
   height: 150px;
-  background: transparent;
+  background: #053576;
   border: 3px solid rgba(0, 102, 255, 0.1);
   border-radius: 50%;
   text-align: center;
   line-height: 150px;
   font-family: sans-serif;
   font-size: 20px;
-  color: #44444C;
+  font-weight: bold;
+  color: #ffcc00;
   letter-spacing: 2px;
   text-transform: uppercase;
-  text-shadow: 0 0 10px #44444C;
-  box-shadow: 0 0 20px rgba(0, 0, 0, .15);
+  text-shadow: 0 0 10px #ffcc00;
+  box-shadow: 0 0 20px rgba(224, 221, 32, 0.15);
 }
 
 .loader::before {
@@ -26,9 +27,9 @@
   left: -3px;
   width: 100%;
   height: 100%;
-  border: 3px solid transparent;
-  border-top: 3px solid #44444C;
-  border-right: 3px solid #44444C;
+  border: 5px solid transparent;
+  border-top: 5px solid #ffcc00;
+  border-right: 5px solid #ffcc00;
   border-radius: 50%;
   animation: animateC 2s linear infinite;
 }
@@ -48,13 +49,13 @@
 .loader span::before {
   content: '';
   position: absolute;
-  width: 16px;
-  height: 16px;
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
-  background: #44444C;
-  top: -6px;
-  right: -8px;
-  box-shadow: 0 0 20px 5px #44444C;
+  background: #ffcc00;
+  top: -4px;
+  right: -12px;
+  box-shadow: 0 0 20px 5px #ffcc00;
 }
 
 @keyframes animateC {

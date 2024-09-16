@@ -56,7 +56,6 @@ const Album = () => {
   };
 
   const { data: Pics, error, isLoading } = useQuery("Images", GalleryImages);
-  console.log(Pics, 'Gallery Images');
 
   if (isLoading) return   <div class="loader">Loading<span></span></div>;
   if (error) return <div>Error loading images</div>;
