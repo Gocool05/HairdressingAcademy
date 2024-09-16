@@ -531,9 +531,7 @@
         box-sizing: border-box;
         gap: 1.875rem;
         min-width: 14.063rem;
-        padding: 10px;
         /* From https://css.glass */
-        border-radius: 10px;
         font-weight: 900;
         backdrop-filter: saturate(180%) blur(10px);
       }
@@ -552,7 +550,7 @@
         /* width: 67.5rem; */
         flex-wrap: wrap;
         justify-content: flex-start;
-        padding: 40px 130px;
+        /* padding: 40px 130px; */
         gap: 4.963rem;
         
       }
@@ -565,6 +563,7 @@
         color: #333;
         font-family: "Open Sans";
       }
+    
       @media screen and (max-width: 1500px) {
         .divet-pb-row {
           gap: 2.5rem;
@@ -581,6 +580,7 @@
           padding-bottom: 2.438rem;
           box-sizing: border-box;
         }
+        
       }
 
         /*   /////////////////////////////////////////////    */

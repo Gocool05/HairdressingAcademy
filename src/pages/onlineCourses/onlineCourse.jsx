@@ -50,13 +50,12 @@ if (error) return <div>An error occurred: {error.message}</div>;
       <NavBar/>
       <div className="divet-pb-module-wrapper">
     <div className="divet-pb-module">
-      <div className="divet-pb-slide bg-gradient-to-t from-blue">
-      <div className="heading-3-container mq925:py-5">
-          <span className="heading-3-container1">
-            <h1 className="text-[60px] mq925:text-[20px] text-bgwhite drop-shadow-2xl">
+      <div className="divet-pb-slide bg-gradient-to-bl to-blue from-black">
+      <div className="py-20 w-[35rem] mq450:w-[20rem]">
+          <span className="">
+            <h1 className="text-[60px] mq925:text-[20px] uppercase text-yellow drop-shadow-2xl">
             Online Courses for Hairdressers
             </h1>
-            {/* <p className="hairdressing-academy text-xl mq925:leading-4 mq925:text-[10px]">In these courses, Javed presents various styles and techniques for creating stunning hair transformations. Each lesson is delivered in a step-by-step format to guide you through the process</p> */}
           </span>
         </div>
       </div>

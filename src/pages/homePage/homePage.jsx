@@ -84,10 +84,10 @@ const Home = async() => {
            Online Learning at IHF by Javed Khan for Hairdressers Empowering Your Salon Career with Affordable, Flexible Learning in Hindi
              </div>
          </div>
-       <main className="frame-parent my-10 mx-9 ">
+       <main className="frame-parent my-10 mx-9 mq1825:px-[100px] mq1250:px-2 mq925:px-2 mq450:px-0">
        <section className="self-stretch flex flex-col mq925:px-0 items-center justify-center  pb-10 box-border max-w-full">
        {/* <div className=" flex flex-col items-center justify-center  box-border  max-w-full shrink-0 text-left text-6xl text-[#C5C6C7]  mq925:gap-[20px] mq925:pt-[42px] mq925:px-[25px] mq925:pb-[25px] mq925:box-border mq1350:pt-[65px] mq1350:px-[210px] mq1350:pb-[39px] mq1350:box-border"> */}
-         <div className=" flex flex-row items-start  justify-evenly px-[150px] mb-10 mq925:mb-0  mq925:px-2 mq925:flex mq925:flex-col  gap-11 max-w-full  ">
+         <div className=" flex flex-row items-center  justify-evenly  mb-10 mq925:mb-0  mq925:px-2 mq925:flex mq925:flex-col  gap-11 max-w-full  ">
            <img
              className="h- flex-1  relative max-w-full bg-gradient-to-t from-black rounded-xl shadow-xl  drop-shadow-2xl overflow-hidden object-cover min-w-[400px] mq925:min-w-[300px]  "
              alt=""
@@ -129,10 +129,10 @@ const Home = async() => {
            </div>
 
            
-         <div className="self-stretch flex flex-column items-start justify-center drop-shadow-2xl px-[150px] mq925:px-0 py-11 box-border max-w-full shrink-0 z-[1] mt-[-0.1px] text-center text-lg text-yellow font-open-sans mq925:pb-[0px] mq925:box-border">
+         <div className="self-stretch flex flex-column items-start justify-center drop-shadow-2xl  mq925:px-0 py-11 box-border max-w-full shrink-0 z-[1] mt-[-0.1px] text-center text-lg text-yellow font-open-sans mq925:pb-[0px] mq925:box-border">
      <div className="w-auto grid grid-cols-3  gap-[5em] max-w-full mq450:pt-[60px] mq450:pb-[26px] mq450:box-border mq925:gap-[30px] mq925:justify-center mq925:grid-cols-[minmax(240px,_1fr)]">
        {abtCard.slice(-3).map((card) => (
-         <div key={card.id} className=" transform transition duration-100 hover:scale-105 cursor-pointer h-[371px] backdrop-blur-sm bg-blue rounded-xl  flex flex-row items-start justify-start pt-2.5 px-2.5 pb-5 box-border max-w-full">
+         <div key={card.id} className=" transform transition duration-100 hover:scale-105 cursor-pointer h-[371px] backdrop-blur-sm bg-blue rounded-b-xl  flex flex-row items-start justify-start pt-1 px-1 pb-5 box-border max-w-full">
            <div className="self-stretch flex-1 flex flex-col items-end justify-start pt-0 px-[0.2px] pb-2.5 gap-[30px] ">
              <img
                className="self-stretch flex-1 relative max-w-full bg-gradient-to-t from-black overflow-hidden max-h-full object-cover"
@@ -152,9 +152,9 @@ const Home = async() => {
    </div>
 
 
-   <div className=" flex flex-row items-start  justify-evenly px-[150px] my-10 mq925:mt-10 mq925:px-2  mq925:flex mq925:flex-col-reverse  gap-11 max-w-full  ">
+   <div className=" flex flex-row items-center  justify-evenly  my-10 mq925:mt-10 mq1250:px-2  mq925:flex mq925:flex-col-reverse  gap-11 max-w-full  ">
            {/* <div className=" flex flex-col items-start justify-start gap-[15px] min-w-[498.7px] max-w-full  "> */}
-             <div className="flex flex-col items-start gap-5 justify-start ">
+             <div className="flex flex-col items-center gap-5 justify-center ">
                <div className=" flex flex-col text-justify gap-3 text-xl ">
                <h1 className="m-0 relative mq925:ml-0 uppercase font-bold mq450:text-xl">
                BEnifits of ihf
@@ -180,7 +180,7 @@ const Home = async() => {
 
        {/* </div> */}
            </section>
-           <div className=" flex flex-row items-start  justify-evenly px-[150px] mb-10 mq925:mb-0 mq925:px-2 mq925:flex mq925:flex-col-reverse  gap-11 max-w-full  ">
+           <div className=" flex flex-row items-center  justify-evenly  mb-10 mq925:mb-0 mq925:px-2 mq925:flex mq925:flex-col-reverse  gap-11 max-w-full  ">
            
            {/* <div className=" flex flex-col items-start justify-start gap-[15px] min-w-[498.7px] max-w-full  "> */}
              <div className="flex flex-col items-start gap-5 justify-start ">
@@ -234,7 +234,7 @@ const Home = async() => {
        <section className="divet-pb-row-wrapper ">
          <div className="divet-pb-row ">
            {cards.map((card)=>(
-             <div  className="divet-pb-blurb-content1 bg-blue drop-shadow-2xl cursor-pointer transform transition duration-100 hover:scale-105" key={card.id}>
+             <div  className="divet-pb-blurb-content1 bg-blue rounded-b-xl px-1 pt-1 drop-shadow-2xl cursor-pointer transform transition duration-100 hover:scale-105" key={card.id}>
                <a onClick={()=>{navigate(`${card.href}`)} }>
              <img
                className="link-events-300x300png bg-gradient-to-t from-black shadow-md shadow-blue"
@@ -243,7 +243,7 @@ const Home = async() => {
                src={`${API_URL}${card.Image.data.attributes.url}`}/>
              <div className="heading-4-link-masterclass-wrapper">
                <div className="heading-4-container">
-                 <p className="masterclasses-online text-bgwhite py-[10px]">{card.Title}</p>
+                 <p className="masterclasses-online text-bgwhite py-4">{card.Title}</p>
                </div>
              </div>
            </a>

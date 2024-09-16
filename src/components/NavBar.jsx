@@ -58,12 +58,11 @@ const NavBar = () => {
 
 
   return (
-    <nav className="  flex z-10 items-center justify-evenly mq450:justify-between py-1 px-5 box-border  text-center text-4xl text-darkslategray-200 font-cormorant-garamond text-lg bg-[#053576]">
+    <nav className="  flex z-10 items-center justify-between mq450:justify-between py-1 px-10 box-border  text-center text-4xl text-darkslategray-200 font-cormorant-garamond text-lg bg-[#053576]">
     <div className="flex  items-center justify-start gap-8 max-w-full">
-    {/* <h1 className='text-white '> IHF by Javed </h1> */}
       <img className='h-16 py-2 w-auto' src='https://api.ihfbyjavedkhan.com/uploads/ihf_logo_590d48d82a.png'/>
     </div>
-    <div className="menu menu-5 mq450:hidden flex items-center justify-center gap-8">
+    <div className="menu menu-5 mq925:hidden flex items-center justify-center gap-8">
       {navLinks && navLinks.map((nav) => (
         <ul key={nav.id} className="relative hover:text-#44444C text-yellow ">
           <li>
@@ -74,7 +73,7 @@ const NavBar = () => {
         </ul>
       ))}
     </div>
-    <div className="mq450:hidden flex items-center justify-center gap-2">
+    <div className="mq925:hidden flex items-center justify-center gap-2">
       {!jwt  ?(
         <button className='btn' onClick={login}>Login</button>
       ):(
@@ -84,7 +83,7 @@ const NavBar = () => {
 
     </div>
 
-    <div className="flex items-center justify-end md:hidden">
+    <div className=" items-center justify-end mq1825:hidden mq1250:hidden mq925:flex ">
       <button onClick={showDrawer} className="text-gray-600 hover:text-gray-800 focus:outline-none focus:text-gray-800">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -125,14 +124,16 @@ const NavBar = () => {
   }}>
 
     <Drawer
-      title="Menu"
       placement="right"
       closable={false}
-      width='200px'
+      width='250px'
       onClose={onClose}
       visible={drawerVisible}
       className="text-white md:hidden  bg-gray1"
     >
+          <div className="flex  items-center justify-start gap-8 max-w-full">
+      <img className='h-16 py-4 w-auto' src='https://api.ihfbyjavedkhan.com/uploads/ihf_logo_590d48d82a.png'/>
+    </div>
       {navLinks && navLinks.map((nav) => (
         <div key={nav.id} className="relative mb-3">
           <a className='text-white' onClick={() => { navigate(`${nav.href}`) }}>

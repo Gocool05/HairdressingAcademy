@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./gallery.css";
 import Modal from 'react-modal';
 import NavBar from "../../components/NavBar";
@@ -13,7 +13,28 @@ const API_URL = process.env.REACT_APP_API_URL;
 const Album = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [currentCategory, setCurrentCategory] = useState([]);
- 
+  const [carouselSize, setCarouselSize] = useState({ width: 800, height: 500 });
+
+  useEffect(() => {
+    const updateCarouselSize = () => {
+      if (window.innerWidth < 640) { // Mobile screen size
+        setCarouselSize({ width: 350, height: 240 });
+      } else if (window.innerWidth < 1024) { // Tablet screen size
+        setCarouselSize({ width: 600, height: 400 });
+      } else { // Desktop screen size
+        setCarouselSize({ width: 800, height: 500 });
+      }
+    };
+
+    // Call the function initially and add a listener for window resizing
+    updateCarouselSize();
+    window.addEventListener('resize', updateCarouselSize);
+
+    // Clean up the listener when the component unmounts
+    return () => window.removeEventListener('resize', updateCarouselSize);
+  }, []);
+
+
   const openModal = (images) => {
     const formattedImages = images?.map(image => ({
       src: `${API_URL}${image.attributes.url}`,
@@ -37,7 +58,7 @@ const Album = () => {
   const { data: Pics, error, isLoading } = useQuery("Images", GalleryImages);
   console.log(Pics, 'Gallery Images');
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return   <div class="loader">Loading<span></span></div>;
   if (error) return <div>Error loading images</div>;
   
   return (
@@ -55,6 +76,7 @@ const Album = () => {
         <div className="category-list ">
           {Pics.map((images, index) => (
             <div key={index} className="card overflow-hidden flex relative w-full h-[300px]">
+
               <img
                 className=" h-[230px] w-[300px] mq450:w-full m-3 object-cover"
                 onClick={() => openModal(images?.attributes.Images.data)}
@@ -74,12 +96,14 @@ const Album = () => {
           isOpen={modalIsOpen}
           onRequestClose={closeModal}
           contentLabel="Image Carousel"
-          className='p-10 mq450:p-5 mq450:pt-20'
+          className='p-10 flex flex-col gap-0 mq450:p-5 mq450:pt-20'
         >
+          <h1 className="mq925:hidden flex text-yellow py-0 my-0">Press ESC to close the Image</h1>
           <Carousel
             images={currentCategory}
-            style={{ height: 500, width: 800 }}
+            style={{ width: carouselSize.width, height: carouselSize.height }}
           />
+          
         </Modal>
       <Footer />
     </div>

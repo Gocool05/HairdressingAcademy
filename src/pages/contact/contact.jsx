@@ -1,10 +1,49 @@
+import axios from "axios"
 import React from "react"
+import { useMutation } from "react-query"
 import Footer from "../../components/Footer"
 import Header from "../../components/Header"
 import NavBar from "../../components/NavBar"
 import "./contact.css"
+const API_URL = process.env.REACT_APP_API_URL;
 
 const Contact = () => {
+
+  const [name, setName] = React.useState("")
+  const [email, setEmail] = React.useState("")
+  const [subject, setSubject] = React.useState("")
+  const [message, setMessage] = React.useState("")  
+
+  const useSendContact = () =>{
+    return useMutation(async(sendContact) =>{
+      const res = await axios.post(`${API_URL}/api/contact`)
+      return res.data
+    })
+  }
+
+const {mutate:contact} = useSendContact();
+
+const handleSubmit = (e) =>{
+  e.preventDefault();
+
+  if(!name ||!email ||!subject ||!message){
+    alert("All fields are required")
+    return;
+  }else{
+    contact({
+      name:name,
+      email: email,
+      subject:subject,
+      message: message,
+    })
+    alert("Message sent successfully")
+  }
+  setName("")
+  setEmail("")
+  setSubject("")
+  setMessage("")
+}
+
   const map = 'https://www.google.com/maps/embed/v1/place?key=AIzaSyA0s1a7phLN0iaD6-UE7m4qP-z21pH0eSc&q=Land+Marvel+Residential+Flat+Owners+Associations+Ashok+Nagar+Chennai+600083" width="300" height="300" frameborder="0" style="border:0;'
   return (
     <>
@@ -34,14 +73,14 @@ const Contact = () => {
 
             <form action=''>
               <div className='flexSB flex gap-4 w-[93%] mq925:flex-col mq925:w-full mq925:gap-0'>
-                <input type='text' placeholder='Name'  />
-                <input type='email' placeholder='Email' />
+                <input type='text' placeholder='Name' onChange={(e)=>setName(e.target.value)} value={name}/>
+                <input type='email' placeholder='Email' onChange={(e)=>setEmail(e.target.value)}  value={email}/>
               </div>
-              <input type='text' placeholder='Subject' />
-              <textarea cols='30' rows='5'>
+              <input type='text' placeholder='Subject' onChange={(e)=>setSubject(e.target.value)} value={subject} />
+              <textarea cols='30' rows='5' onChange={(e)=>setMessage(e.target.value)} value={message}>
                 Create a message here...
               </textarea>
-              <button className='btn1'>SEND MESSAGE</button>
+              <button className='btn1' onClick={handleSubmit}>SEND MESSAGE</button>
             </form>
           </div>
       </section>
