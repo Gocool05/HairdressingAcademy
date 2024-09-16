@@ -14,7 +14,7 @@ body {
 
 
 .btn {
-  --color: #C5C6C7;
+  --color: #ffcc00;
   --color2: rgb(10, 25, 30);
   padding: 0.4em 1.75em;
   background-color: transparent;
@@ -25,7 +25,7 @@ body {
   overflow: hidden;
   cursor: pointer;
   z-index: 1;
-  font-weight: 300;
+  font-weight: 700;
   font-size: auto;
   text-transform: uppercase;
   color: var(--color);
@@ -68,8 +68,8 @@ body {
   transform: scale(.98);
  }
 .btn1 {
-  --color: #17191c;
-  --color2: #C5C6C7;
+  --color: #004bab;
+  --color2: #ffffff;
   padding: 0.4em 1.75em;
   background-color: transparent;
   border-radius: 12px;

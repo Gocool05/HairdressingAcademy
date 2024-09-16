@@ -17,37 +17,45 @@ const MasterClasses = () => {
   const [courseCardContent, setCourseCardContent] = useState([]);
   const [headerBottom, setHeaderBottom] = useState([]);
 
-  const Master = async () => {
-    const response = await axios.get(
-      `${API_URL}/api/master-classes?populate[course][populate]=*`
-    );
-    return response.data.data;
-  };
-  const { data: courses, isLoading, error } = useQuery("Master", Master);
+//   const Master = async () => {
+//     const response = await axios.get(
+//       `${API_URL}/api/master-classes?populate[course][populate]=*`
+//     );
+//     return response.data.data;
+//   };
+//   const { data: courses, isLoading, error } = useQuery("Master", Master);
 
-  if (isLoading)
-    return (
-      <div class="loader">
-        Loading..<span></span>
-      </div>
-    );
-  if (error) return <section class="flex items-center h-screen p-16 ">
-  <div class="container flex flex-col items-center ">
-      <div class="flex flex-col gap-2 max-w-md text-center">
-          <h1 class="font-extrabold text-[5rem] my-0 p-0 text-white">
-            404
-          </h1>
-          <p class="text-2xl my-0 text-white">Sorry, we couldn't find this page.</p>
-          <a href="/" class="btn">Back to home</a>
-      </div>
-  </div>
-</section>;
+//   if (isLoading)
+//     return (
+//       <div class="loader">
+//         Loading..<span></span>
+//       </div>
+//     );
+//   if (error) return <section class="flex items-center h-screen p-16 ">
+//   <div class="container flex flex-col items-center ">
+//       <div class="flex flex-col gap-2 max-w-md text-center">
+//           <h1 class="font-extrabold text-[5rem] my-0 p-0 text-white">
+//             404
+//           </h1>
+//           <p class="text-2xl my-0 text-white">Sorry, we couldn't find this page.</p>
+//           <a href="/" class="btn">Back to home</a>
+//       </div>
+//   </div>
+// </section>;
 
   return (
-    <div className="container bg-bgwhite">
+    <div className="container bg-liteBlue">
       <NavBar />
+      <div class="container flex flex-col items-center h-full py-20">
+       <div class="flex flex-col gap-2 max-w-md text-center">
+           <h1 class="font-extrabold text-[3rem] my-0 p-0 text-blue">
+             Currently No Masterclass is available
+           </h1>
+           <a href="/" class="btn1">Back to home</a>
+       </div>
+   </div>
 
-      <div className="divet-pb-module-wrapper">
+      {/* <div className="divet-pb-module-wrapper">
         <div className="divet-pb-module">
           <div className="divet-pb-slide bg-gradient-to-t from-black">
             <div className="heading-3-container mq925:py-5">
@@ -55,13 +63,12 @@ const MasterClasses = () => {
                 <h1 className="text-[60px] mq925:text-[20px] text-white drop-shadow-2xl">
                   Masterclass
                 </h1>
-                {/* <p className="hairdressing-academy text-xl mq925:leading-4 mq925:text-[10px]">In these courses, Javed presents various styles and techniques for creating stunning hair transformations. Each lesson is delivered in a step-by-step format to guide you through the process</p> */}
               </span>
             </div>
           </div>
         </div>
-      </div>
-      <div className="self-stretch  flex flex-col items-center justify-start py-1  px-5  box-border gap-[1px] max-w-full z-[1] text-smi text-gray1">
+      </div> */}
+      {/* <div className="self-stretch  flex flex-col items-center justify-start py-1  px-5  box-border gap-[1px] max-w-full z-[1] text-smi text-gray1">
         <div className=" relative font-bold flex items-center justify-center max-w-full shrink-0">
           Learn the newest techniques from the Godfather of Hair Design himself.
           Get 25 years of experience packed into the ultimate online
@@ -116,7 +123,7 @@ const MasterClasses = () => {
               </Link>
             ))}
         </div>
-      </section>
+      </section> */}
       <Footer />
     </div>
   );

@@ -7,7 +7,7 @@ const Login = () => {
     <Container className=''>
     <div style={{top: 0,left: 0,width: "100%",height: "100%",position: "absolute",zIndex: -1,backgroundColor: "rgba(0, 0, 0, 0.6)"}}></div>
     <CTA>
-      <CTALogoOne src="https://res.cloudinary.com/dx78kzenz/image/upload/v1716273651/ihf_PNG_rqqrku.png" alt="" />
+      <CTALogoOne src="https://api.ihfbyjavedkhan.com/uploads/ihf_logo_590d48d82a.png" alt="" />
       {/* <h1 className='text-[60px] text-white items-center justify-center m-0 p-0'>IHF by Javed khan</h1> */}
       <SignUp  onClick={() =>
         (window.location =`${API_URL}/api/connect/google`)}>LOGIN</SignUp>

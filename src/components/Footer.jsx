@@ -29,11 +29,11 @@ const Footer = () => {
     }
 
   return (
-    <footer className=" bg-gray1 ">
+    <footer className=" bg-blue relative">
     <div className=" px-6 py-8 ">
         <div className="fleX flex-col items-center text-center">
             <a href="/">
-                <img className="w-auto h-20" src="https://res.cloudinary.com/dx78kzenz/image/upload/v1716273651/ihf_PNG_rqqrku.png" alt=""/>
+                <img className="w-auto h-20" src="https://api.ihfbyjavedkhan.com/uploads/ihf_logo_590d48d82a.png" alt=""/>
             </a>
 
             <div className="flex  gap-6 justify-center mt-6 -mx-4  mq925:m-0 ">

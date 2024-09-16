@@ -64,6 +64,7 @@ if(localStorage.getItem('redirectToCart')){
       console.error(err);
     }
   };
+  
   const addToCart = async () => {
     if (JWT) {
       if (cart) {
@@ -228,7 +229,7 @@ if(localStorage.getItem('redirectToCart')){
   return (
     <>
       <NavBar />
-      <div className="w-full  bg-[#D6D6D6] flex flex-row items-start justify-center py-0 pb-20 px-5 box-border leading-[normal] tracking-[normal]">
+      <div className="w-full  bg-liteBlue flex flex-row items-start justify-center py-0 pb-20 px-5 box-border leading-[normal] tracking-[normal]">
         <section className="w-[1320px] flex flex-col items-start justify-start   max-w-[1320px] text-left text-xl  mq800:gap-[22px] mq1350:max-w-full">
           <h1 className="text-gray1 pl-3">{course.CourseName}</h1>
           <div className="ml-[-12px] w-[1344px] flex flex-row mq925:flex-col items-start gap-12 justify-start max-w-[102%] shrink-0 mq1150:flex-wrap">
@@ -344,11 +345,11 @@ if(localStorage.getItem('redirectToCart')){
               </div>
             </div>
           </div>
-            <div className="w-[448px] flex   flex-col items-start justify-start  px-6 mq925:pr-0 pb-[359.3px] text-gray1 box-border gap-[24px]  text-5xl mq800:pb-[152px] mq800:box-border mq800:min-w-full mq1150:w-full mq1350:pb-[234px] mq1350:box-border mq1350:max-w-full">
-              <div className="self-stretch rounded-md bg-white flex flex-col items-start justify-start pt-0 px-0 pb-px drop-shadow-2xl ">
+            <div className="w-[448px] flex   flex-col items-start justify-start  px-6 mq925:pr-0 pb-[359.3px] text-bgwhite box-border gap-[24px]  text-5xl mq800:pb-[152px] mq800:box-border mq800:min-w-full mq1150:w-full mq1350:pb-[234px] mq1350:box-border mq1350:max-w-full">
+              <div className="self-stretch rounded-md bg-blue flex flex-col items-start justify-start pt-0 px-0 pb-px drop-shadow-2xl ">
                 {isBought ? (
                   <div className="flex flex-col min-w-full gap-2 mt-4 mb-4 items-center justify-center pt-0 px-0 pb-[0.7px]">
-                    <h1 className="relative w-full m-0  text-gray1 text-center items-center justify-center">
+                    <h1 className="relative w-full m-0  text-bgwhite text-center items-center justify-center">
                       keep Learing...
                     </h1>
                     <button
@@ -364,7 +365,7 @@ if(localStorage.getItem('redirectToCart')){
                   <div className="self-stretch rounded-t-md rounded-b-none bg-thelondonhairdressingacademycom-aqua-haze flex flex-col items-start justify-start pt-8 px-8 pb-[31.2px] gap-[24px]">
                     <div className="self-stretch h-[38.4px] flex flex-row items-end justify-start pt-0 px-0 pb-0 box-border">
                       <div className="flex flex-col items-start justify-start pt-0 px-0 pb-[0.7px]">
-                        <b className="relative text-gray1 leading-[39px] inline-block min-w-[76px] whitespace-nowrap mq450:text-lgi mq450:leading-[31px]">
+                        <b className="relative text-white leading-[39px] inline-block min-w-[76px] whitespace-nowrap mq450:text-lgi mq450:leading-[31px]">
                           ₹ {course.Price}
                         </b>
                       </div>
@@ -375,14 +376,14 @@ if(localStorage.getItem('redirectToCart')){
                         className="no-underline"
                       >
                         {" "}
-                        <button className="cursor-pointer py-[9px] px-5 bg-gray1 text-white self-stretch rounded-md flex flex-row items-center justify-center border-[1px] border-solid ">
+                        <button className="cursor-pointer py-[9px] px-5 bg-white text-blue self-stretch rounded-md flex flex-row items-center justify-center border-[1px] border-solid ">
                           View Cart
                         </button>{" "}
                       </Link>
                     ) : (
                       <button
                         onClick={addToCart}
-                        className="cursor-pointer py-[9px] px-5 bg-gray1 text-white self-stretch rounded-md flex flex-row items-center justify-center border-[1px] border-solid "
+                        className="cursor-pointer py-[9px] px-5 bg-liteBlue text-blue self-stretch rounded-md flex flex-row items-center justify-center border-[1px] border-solid "
                       >
                         Add to Cart
                       </button>
@@ -390,7 +391,7 @@ if(localStorage.getItem('redirectToCart')){
                   </div>
                 )}
 
-                <div className="self-stretch rounded-t-none  rounded-b-8xs flex flex-col items-start text-gray1 justify-start pt-[23px] px-8 pb-6 text-base text-thelondonhairdressingacademycom-mako border-t-[1px] border-solid border-thelondonhairdressingacademycom-ghost">
+                <div className="self-stretch rounded-t-none  rounded-b-8xs flex flex-col items-start text-white justify-start pt-[23px] px-8 pb-6 text-base text-thelondonhairdressingacademycom-mako border-t-[1px] border-solid border-thelondonhairdressingacademycom-ghost">
                   <div className="self-stretch flex flex-col items-start justify-start gap-[11.2px]">
                     <div className="self-stretch flex flex-row items-end justify-start py-0  pl-0 mq450:pr-5 mq450:box-border">
                       <div className="flex flex-col items-start justify-center pt-[4.2px] pb-[0.2px] pr-3 pl-0">
@@ -438,11 +439,11 @@ if(localStorage.getItem('redirectToCart')){
                 </div>
               </div>
 
-              <div className="self-stretch  flex flex-col items-start bg-white justify-start max-w-full text-base text-gray1">
-                <h2 className="px-5 m-0 mt-3">Lesson Plan</h2>
+              <div className="self-stretch  flex flex-col items-start bg-blue justify-start max-w-full text-base text-blue">
+                <h2 className="px-5 m-0 mt-3 text-white">Lesson Plan</h2>
                       {lessonPlan && lessonPlan.map((plan, index)=>(
                 <ul class="m-0 px-5 py-2 list-none min-w-[90%]" key={index}>
-                  <li className="drop-shadow-2xl bg-white mb-2  ">
+                  <li className="drop-shadow-2xl bg-liteBlue mb-2  ">
                     <details class="group">
                       <summary class="flex items-center gap-3 px-4 py-3 justify-between font-medium marker:content-none hover:cursor-pointer">
                         <span>{plan.Topic}</span>

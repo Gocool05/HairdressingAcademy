@@ -41,7 +41,7 @@ const Album = () => {
   if (error) return <div>Error loading images</div>;
   
   return (
-    <div className="container overflow-x-hidden bg-bgwhite">
+    <div className="container overflow-x-hidden bg-liteBlue">
       <NavBar />
         <div className="section-title">
           <h1 style={{ textAlign: "center" }} className="text-gray1">

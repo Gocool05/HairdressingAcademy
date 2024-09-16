@@ -533,7 +533,6 @@
         min-width: 14.063rem;
         padding: 10px;
         /* From https://css.glass */
-        background: #D6D6D6;
         border-radius: 10px;
         font-weight: 900;
         backdrop-filter: saturate(180%) blur(10px);

@@ -6,6 +6,12 @@ module.exports = {
       colors: {
         white: "#C5C6C7",
         bgwhite: "#D6D6D6",
+        blue: "#053576",
+        liteBlue:'#eaf9ff',
+        midBlue:'#007eff',
+        btnBlue:'#0065ff',
+        red: "#ff0000",
+        yellow: "#ffcc00",
         gray1:"#17191c",
         darkslategray: {
           "100": "#444",

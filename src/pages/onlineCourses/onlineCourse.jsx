@@ -46,14 +46,14 @@ if (error) return <div>An error occurred: {error.message}</div>;
 
 
   return (
-    <div className='container overflow-x-hidden bg-bgwhite'>
+    <div className='container overflow-x-hidden bg-liteBlue'>
       <NavBar/>
       <div className="divet-pb-module-wrapper">
     <div className="divet-pb-module">
-      <div className="divet-pb-slide bg-gradient-to-t from-black">
+      <div className="divet-pb-slide bg-gradient-to-t from-blue">
       <div className="heading-3-container mq925:py-5">
           <span className="heading-3-container1">
-            <h1 className="text-[60px] mq925:text-[20px] text-white drop-shadow-2xl">
+            <h1 className="text-[60px] mq925:text-[20px] text-bgwhite drop-shadow-2xl">
             Online Courses for Hairdressers
             </h1>
             {/* <p className="hairdressing-academy text-xl mq925:leading-4 mq925:text-[10px]">In these courses, Javed presents various styles and techniques for creating stunning hair transformations. Each lesson is delivered in a step-by-step format to guide you through the process</p> */}
@@ -87,13 +87,13 @@ if (error) return <div>An error occurred: {error.message}</div>;
               className='no-underline transform transition duration-100 hover:scale-105'
               key={card.id} // Move key here to the Link element
             >
-              <div className="w-[400px] h-[350px] mq925:w-[100%] mq925:h-auto backdrop-blur-xl rounded-xl bg-opacity-90 bg-white drop-shadow-2xl backdrop-filter flex flex-col items-start justify-start pt-0 px-0 pb-[17.9px] box-border gap-5 text-left text-base text-gray1 font-open-sans">
+              <div className="w-[400px] h-[350px] mq925:w-[100%] mq925:h-auto backdrop-blur-xl rounded-xl bg-opacity-90 bg-blue drop-shadow-2xl backdrop-filter flex flex-col items-start justify-start pt-0 px-0 pb-[17.9px] box-border gap-5 text-left text-base text-gray1 font-open-sans">
                 <img
                   className="self-stretch h-[250px] rounded-t-2xl bg-gradient-to-t from-black relative max-w-full overflow-hidden shrink-0 object-cover"
                   alt=""
                   src={`${API_URL}${card.attributes.CourseImage.data.attributes.url}`}
                 />
-                <div className="absolute flex bottom-24 p-2 right-1 z-50 bg-transparent text-white gap-1 justify-center items-center text-center"> 
+                <div className="absolute flex top-2 px-2 py-1 left-0 rounded-r-md z-50 bg-yellow text-blue gap-1 justify-center items-center text-center"> 
                   <div className="justify-center items-center text-center">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
                       <path fillRule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25ZM9 7.5A.75.75 0 0 0 9 9h1.5c.98 0 1.813.626 2.122 1.5H9A.75.75 0 0 0 9 12h3.622a2.251 2.251 0 0 1-2.122 1.5H9a.75.75 0 0 0-.53 1.28l3 3a.75.75 0 1 0 1.06-1.06L10.8 14.988A3.752 3.752 0 0 0 14.175 12H15a.75.75 0 0 0 0-1.5h-.825A3.733 3.733 0 0 0 13.5 9H15a.75.75 0 0 0 0-1.5H9Z" clipRule="evenodd" />
@@ -103,7 +103,7 @@ if (error) return <div>An error occurred: {error.message}</div>;
                     {card.attributes.Price}
                   </div>
                 </div>
-                <div className="flex flex-row items-start justify-between py-0 px-5">
+                <div className="flex flex-row text-bgwhite items-start justify-between py-0 px-5">
                   <div className="flex flex-col items-start justify-start gap-[1px]">
                     <div className="relative font-bold uppercase">
                       {card.attributes.CourseName}

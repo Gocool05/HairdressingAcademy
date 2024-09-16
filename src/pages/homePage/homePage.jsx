@@ -76,7 +76,7 @@ const Home = async() => {
   <span></span>
 </div>
       ):(
-        <div className="overflow-x-hidden bg-bgwhite">
+        <div className="overflow-x-hidden bg-liteBlue">
       <NavBar/>
     <Slider/> 
     <div className="self-stretch  flex flex-col items-center justify-start py-5  px-5  box-border gap-[1px] max-w-full z-[1] text-smi text-gray1">
@@ -89,7 +89,7 @@ const Home = async() => {
        {/* <div className=" flex flex-col items-center justify-center  box-border  max-w-full shrink-0 text-left text-6xl text-[#C5C6C7]  mq925:gap-[20px] mq925:pt-[42px] mq925:px-[25px] mq925:pb-[25px] mq925:box-border mq1350:pt-[65px] mq1350:px-[210px] mq1350:pb-[39px] mq1350:box-border"> */}
          <div className=" flex flex-row items-start  justify-evenly px-[150px] mb-10 mq925:mb-0  mq925:px-2 mq925:flex mq925:flex-col  gap-11 max-w-full  ">
            <img
-             className="h- flex-1  relative max-w-full bg-gradient-to-t from-black rounded-xl drop-shadow-2xl overflow-hidden object-cover min-w-[400px] mq925:min-w-[300px]  "
+             className="h- flex-1  relative max-w-full bg-gradient-to-t from-black rounded-xl shadow-xl  drop-shadow-2xl overflow-hidden object-cover min-w-[400px] mq925:min-w-[300px]  "
              alt=""
              src={`${API_URL}${abtImage}`}
            />
@@ -129,10 +129,10 @@ const Home = async() => {
            </div>
 
            
-         <div className="self-stretch flex flex-column items-start justify-center drop-shadow-2xl px-[150px] mq925:px-0 py-11 box-border max-w-full shrink-0 z-[1] mt-[-0.1px] text-center text-lg text-gray1 font-open-sans mq925:pb-[0px] mq925:box-border">
+         <div className="self-stretch flex flex-column items-start justify-center drop-shadow-2xl px-[150px] mq925:px-0 py-11 box-border max-w-full shrink-0 z-[1] mt-[-0.1px] text-center text-lg text-yellow font-open-sans mq925:pb-[0px] mq925:box-border">
      <div className="w-auto grid grid-cols-3  gap-[5em] max-w-full mq450:pt-[60px] mq450:pb-[26px] mq450:box-border mq925:gap-[30px] mq925:justify-center mq925:grid-cols-[minmax(240px,_1fr)]">
        {abtCard.slice(-3).map((card) => (
-         <div key={card.id} className=" transform transition duration-100 hover:scale-105 cursor-pointer h-[371px] backdrop-blur-sm bg-[#D6D6D6] rounded-xl  flex flex-row items-start justify-start pt-2.5 px-2.5 pb-5 box-border max-w-full">
+         <div key={card.id} className=" transform transition duration-100 hover:scale-105 cursor-pointer h-[371px] backdrop-blur-sm bg-blue rounded-xl  flex flex-row items-start justify-start pt-2.5 px-2.5 pb-5 box-border max-w-full">
            <div className="self-stretch flex-1 flex flex-col items-end justify-start pt-0 px-[0.2px] pb-2.5 gap-[30px] ">
              <img
                className="self-stretch flex-1 relative max-w-full bg-gradient-to-t from-black overflow-hidden max-h-full object-cover"
@@ -141,7 +141,7 @@ const Home = async() => {
                src={`${API_URL}${card.Image.data.attributes.url}`}
              />
              <div className="self-stretch flex flex-row items-start justify-end py-0  mq450:pl-5 mq450:pr-5 mq450:box-border">
-               <div className="flex-1 relative leading-[18px] uppercase  text-gray1">
+               <div className="flex-1 relative leading-[18px] uppercase  text-bgwhite">
                  {card.Title}
                </div>
              </div>
@@ -172,7 +172,7 @@ const Home = async() => {
                </div>
              </div>
              <img
-             className="h- flex-1 relative max-w-full rounded-xl drop-shadow-2xl bg-gradient-to-t from-black overflow-hidden object-cover min-w-[400px] mq925:min-w-[100%]  "
+             className="h- flex-1 relative max-w-full rounded-xl drop-shadow-2xl shadow-xl bg-gradient-to-t from-black overflow-hidden object-cover min-w-[400px] mq925:min-w-[100%]  "
              alt=""
              src='https://api.ihfbyjavedkhan.com/uploads/DSC_6680_20a23ece48.JPG'
            />
@@ -226,24 +226,24 @@ const Home = async() => {
                </div>
              </div>
              <img
-             className="h- flex-1  relative mb-10 max-w-full drop-shadow-2xl rounded-xl bg-gradient-to-t from-black overflow-hidden object-cover min-w-[400px] mq925:min-w-[90%]  "
+             className="h- flex-1  relative mb-10 max-w-full drop-shadow-2xl shadow-xl  rounded-xl bg-gradient-to-t from-black overflow-hidden object-cover min-w-[400px] mq925:min-w-[90%]  "
              alt=""
              src={`${API_URL}${benifitsImage}`}
            />
            </div>
-       <section className="divet-pb-row-wrapper">
+       <section className="divet-pb-row-wrapper ">
          <div className="divet-pb-row ">
            {cards.map((card)=>(
-             <div  className="divet-pb-blurb-content1 drop-shadow-2xl cursor-pointer transform transition duration-100 hover:scale-105" key={card.id}>
+             <div  className="divet-pb-blurb-content1 bg-blue drop-shadow-2xl cursor-pointer transform transition duration-100 hover:scale-105" key={card.id}>
                <a onClick={()=>{navigate(`${card.href}`)} }>
              <img
-               className="link-events-300x300png bg-gradient-to-t from-black"
+               className="link-events-300x300png bg-gradient-to-t from-black shadow-md shadow-blue"
                loading="lazy"
                alt=""
                src={`${API_URL}${card.Image.data.attributes.url}`}/>
              <div className="heading-4-link-masterclass-wrapper">
                <div className="heading-4-container">
-                 <p className="masterclasses-online py-[10px]">{card.Title}</p>
+                 <p className="masterclasses-online text-bgwhite py-[10px]">{card.Title}</p>
                </div>
              </div>
            </a>

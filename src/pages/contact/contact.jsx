@@ -9,7 +9,7 @@ const Contact = () => {
   return (
     <>
     <NavBar/>
-      <section className='contacts bg-bgwhite  px-14 py-14 flex gap-5 mq925:px-6 mq925:flex-col'>
+      <section className='contacts bg-liteBlue  px-14 py-14 flex gap-5 mq925:px-6 mq925:flex-col'>
           <div className='left flex w-[50%] mq925:w-full'>
             <iframe className="w-full " src={map}></iframe>
           </div>
@@ -41,7 +41,7 @@ const Contact = () => {
               <textarea cols='30' rows='5'>
                 Create a message here...
               </textarea>
-              <button className='btn1 '>SEND MESSAGE</button>
+              <button className='btn1'>SEND MESSAGE</button>
             </form>
           </div>
       </section>
