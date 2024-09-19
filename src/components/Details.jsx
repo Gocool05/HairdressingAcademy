@@ -230,7 +230,7 @@ if(localStorage.getItem('redirectToCart')){
     <>
       <NavBar />
       <div className="w-full  bg-liteBlue flex flex-row items-start justify-center py-0 pb-20 px-5 box-border leading-[normal] tracking-[normal]">
-        <section className="w-[1320px] flex flex-col items-start justify-start   max-w-[1320px] text-left text-xl  mq800:gap-[22px] mq1350:max-w-full">
+        <section className="w-[1320px] flex flex-col items-start justify-start   max-w-[1320px] text-left text-xl  mq800:gap-[22px] mq1250:max-w-full">
           <h1 className="text-gray1 pl-3">{course.CourseName}</h1>
           <div className="ml-[-12px] w-[1344px] flex flex-row mq925:flex-col items-start gap-12 justify-start max-w-[102%] shrink-0 mq1150:flex-wrap">
            
@@ -345,7 +345,7 @@ if(localStorage.getItem('redirectToCart')){
               </div>
             </div>
           </div>
-            <div className="w-[448px] flex   flex-col items-start justify-start  px-6 mq925:pr-0 pb-[359.3px] text-bgwhite box-border gap-[24px]  text-5xl mq800:pb-[152px] mq800:box-border mq800:min-w-full mq1150:w-full mq1350:pb-[234px] mq1350:box-border mq1350:max-w-full">
+            <div className="w-[448px] flex   flex-col items-start justify-start  px-6 mq925:pr-0 pb-[359.3px] text-bgwhite box-border gap-[24px]  text-5xl mq800:pb-[152px] mq800:box-border mq800:min-w-full mq1250:w-full mq1350:pb-[234px] mq1350:box-border mq1350:max-w-full">
               <div className="self-stretch rounded-md bg-blue flex flex-col items-start justify-start pt-0 px-0 pb-px drop-shadow-2xl ">
                 {isBought ? (
                   <div className="flex flex-col min-w-full gap-2 mt-4 mb-4 items-center justify-center pt-0 px-0 pb-[0.7px]">

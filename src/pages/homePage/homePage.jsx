@@ -84,7 +84,7 @@ const Home = async() => {
            Online Learning at IHF by Javed Khan for Hairdressers Empowering Your Salon Career with Affordable, Flexible Learning in Hindi
              </div>
          </div>
-       <main className="frame-parent my-10 mx-9 mq1825:px-[100px] mq1250:px-2 mq925:px-2 mq450:px-0">
+       <main className="frame-parent my-10 mq450:mx-4 mq925:mx-9 mq1825:px-[100px] mq1250:px-2 mq925:px-2 mq450:px-0">
        <section className="self-stretch flex flex-col mq925:px-0 items-center justify-center  pb-10 box-border max-w-full">
        {/* <div className=" flex flex-col items-center justify-center  box-border  max-w-full shrink-0 text-left text-6xl text-[#C5C6C7]  mq925:gap-[20px] mq925:pt-[42px] mq925:px-[25px] mq925:pb-[25px] mq925:box-border mq1350:pt-[65px] mq1350:px-[210px] mq1350:pb-[39px] mq1350:box-border"> */}
          <div className=" flex flex-row items-center  justify-evenly  mb-10 mq925:mb-0  mq925:px-2 mq925:flex mq925:flex-col  gap-11 max-w-full  ">

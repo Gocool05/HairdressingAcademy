@@ -10,17 +10,11 @@ const GoogleCallBackAuth = () => {
   const [jwt, setJwt] = useState()
   const location = useLocation()
   const navigate = useNavigate();
+  
   useEffect(() => {
     if (!location) {
       return
     }
-    // axios({
-      //     method: 'GET',
-      //     url: `${API_URL}/api/auth/google/callback?${search}`,
-      //   })
-      //   .then((res) =>  res.data)
-      //   .then(setAuth)
-      
     },[location] )
     
     const { search } = location

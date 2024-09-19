@@ -47,7 +47,7 @@ if (error) return <div>An error occurred: {error.message}</div>;
 
 
   return (
-    <div className='container overflow-x-hidden bg-liteBlue'>
+    <div className=' overflow-x-hidden bg-liteBlue'>
       <NavBar/>
       <div className="divet-pb-module-wrapper">
     <div className="divet-pb-module">

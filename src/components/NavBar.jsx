@@ -58,13 +58,13 @@ const NavBar = () => {
 
 
   return (
-    <nav className="  flex z-10 items-center justify-between mq450:justify-between py-1 px-10 box-border  text-center text-4xl text-darkslategray-200 font-cormorant-garamond text-lg bg-[#053576]">
+    <nav className="  flex z-10 items-center justify-between mq450:justify-between py-1 mq1825:px-10 box-border mq450:px-5 text-center text-4xl text-darkslategray-200 font-cormorant-garamond text-lg bg-[#053576]">
     <div className="flex  items-center justify-start gap-8 max-w-full">
       <img className='h-16 py-2 w-auto' src='https://api.ihfbyjavedkhan.com/uploads/ihf_logo_590d48d82a.png'/>
     </div>
     <div className="menu menu-5 mq925:hidden flex items-center justify-center gap-8">
       {navLinks && navLinks.map((nav) => (
-        <ul key={nav.id} className="relative hover:text-#44444C text-yellow ">
+        <ul key={nav.id} className="relative shrink-0 hover:text-#44444C text-yellow ">
           <li>
           <a  onClick={() => { navigate(`${nav.href}`) }}>
             {nav.label}

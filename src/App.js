@@ -23,7 +23,7 @@ function App() {
   }, []);
 
   return (
-    <div className="App bg-black">
+    <div className="App">
       <QueryClientProvider client={queryClient}>
       <BrowserRouter>
       <AllRoutes/>
