@@ -75,7 +75,7 @@ if (error) return <div>An error occurred: {error.message}</div>;
   {categories && categories.map((Type, index) => (
     <section 
       key={index} 
-      className="relative flex flex-col items-start justify-start pt-0 px-0 box-border max-w-full shrink-0 mq975:pb-[23px] mq975:box-border mq1500:pb-9 mq1500:box-border"
+      className="relative flex  flex-col items-start justify-start pt-0 px-0 box-border max-w-full shrink-0 mq975:pb-[23px] mq975:box-border mq1500:pb-9 mq1500:box-border"
     >   
       <h1 className='ml-[200px] mq925:ml-7'>{Type.attributes.Type}</h1>
       <div className="flex flex-row mq925:flex-col flex-wrap items-start justify-start py-1 px-[180px] mq450:px-5 gap-[20px] mq975:py-[57px] mq975:px-[10px] mq975:box-border">
@@ -84,10 +84,10 @@ if (error) return <div>An error occurred: {error.message}</div>;
             <Link 
               to={'/details/course/' + card.id} 
               onClick={() => { handleOnclick('/details/course/' + card.id) }} 
-              className='no-underline transform transition duration-100 hover:scale-105'
+              className='no-underline transform transition duration-100 hover:scale-105 '
               key={card.id} // Move key here to the Link element
             >
-              <div className="w-[400px] h-[350px] mq925:w-[100%] mq925:h-auto backdrop-blur-xl rounded-xl bg-opacity-90 bg-blue drop-shadow-2xl backdrop-filter flex flex-col items-start justify-start pt-0 px-0 pb-[17.9px] box-border gap-5 text-left text-base text-gray1 font-open-sans">
+              <div className="w-[400px] h-[350px] mq925:w-[100%] mq925:h-auto backdrop-blur-xl shadow-lg shadow-black rounded-xl bg-opacity-90 bg-blue drop-shadow-2xl backdrop-filter flex flex-col items-start justify-start pt-0 px-0 pb-[17.9px] box-border gap-5 text-left text-base text-gray1 font-open-sans">
                 <img
                   className="self-stretch h-[250px] rounded-t-2xl bg-gradient-to-t from-black relative max-w-full overflow-hidden shrink-0 object-cover"
                   alt=""

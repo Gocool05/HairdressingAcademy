@@ -132,7 +132,7 @@ const Home = async() => {
          <div className="self-stretch flex flex-column items-start justify-center drop-shadow-2xl  mq925:px-0 py-11 box-border max-w-full shrink-0 z-[1] mt-[-0.1px] text-center text-lg text-yellow font-open-sans mq925:pb-[0px] mq925:box-border">
      <div className="w-auto grid grid-cols-3  gap-[5em] max-w-full mq450:pt-[60px] mq450:pb-[26px] mq450:box-border mq925:gap-[30px] mq925:justify-center mq925:grid-cols-[minmax(240px,_1fr)]">
        {abtCard.slice(-3).map((card) => (
-         <div key={card.id} className=" transform transition duration-100 hover:scale-105 cursor-pointer h-[371px] backdrop-blur-sm bg-blue rounded-b-xl  flex flex-row items-start justify-start pt-1 px-1 pb-5 box-border max-w-full">
+         <div key={card.id} className=" transform transition duration-100 hover:scale-105 cursor-pointer h-[371px] backdrop-blur-sm shadow-lg shadow-black bg-blue rounded-b-xl  flex flex-row items-start justify-start  pb-5 box-border max-w-full">
            <div className="self-stretch flex-1 flex flex-col items-end justify-start pt-0 px-[0.2px] pb-2.5 gap-[30px] ">
              <img
                className="self-stretch flex-1 relative max-w-full bg-gradient-to-t from-black overflow-hidden max-h-full object-cover"
@@ -234,10 +234,10 @@ const Home = async() => {
        <section className="divet-pb-row-wrapper ">
          <div className="divet-pb-row ">
            {cards.map((card)=>(
-             <div  className="divet-pb-blurb-content1 bg-blue rounded-b-xl px-1 pt-1 drop-shadow-2xl cursor-pointer transform transition duration-100 hover:scale-105" key={card.id}>
+             <div  className="divet-pb-blurb-content1 bg-blue rounded-b-xl shadow-lg shadow-black drop-shadow-2xl cursor-pointer transform transition duration-100 hover:scale-105" key={card.id}>
                <a onClick={()=>{navigate(`${card.href}`)} }>
              <img
-               className="link-events-300x300png bg-gradient-to-t from-black shadow-md shadow-blue"
+               className="link-events-300x300png overflow-hidden bg-gradient-to-t from-black shadow-md"
                loading="lazy"
                alt=""
                src={`${API_URL}${card.Image.data.attributes.url}`}/>
