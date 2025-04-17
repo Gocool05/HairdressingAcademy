@@ -6,17 +6,19 @@ import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { ConfigProvider, Drawer } from 'antd';
 import { useQuery } from 'react-query';
+import { SlHandbag } from "react-icons/sl";
+
+
+
 const API_URL = process.env.REACT_APP_API_URL;
-const Token = localStorage.getItem("JwtToken");
-let jwt;
-setTimeout(()=>{
-jwt = localStorage.getItem("JwtToken")
-},1000)
+
 
 const NavBar = () => {
+  const [Token,setToken] = useState (localStorage.getItem("JwtToken"));
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [drawerVisible, setDrawerVisible] = useState(false);
   const navigate = useNavigate();
+
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
@@ -35,7 +37,6 @@ const NavBar = () => {
     localStorage.removeItem("User");
     localStorage.removeItem("EmailId");
     setTimeout(()=>{
-      window.location.reload();
       navigate("/", { replace: true });
     },1000)
   };
@@ -62,6 +63,7 @@ const NavBar = () => {
     <div className="flex  items-center justify-start gap-8 max-w-full">
       <img className='h-16 py-2 w-auto' src='https://api.ihfbyjavedkhan.com/uploads/ihf_logo_590d48d82a.png'/>
     </div>
+
     <div className="menu menu-5 mq925:hidden flex items-center justify-center gap-8">
       {navLinks && navLinks.map((nav) => (
         <ul key={nav.id} className="relative shrink-0 hover:text-#44444C text-yellow ">
@@ -73,17 +75,31 @@ const NavBar = () => {
         </ul>
       ))}
     </div>
-    <div className="mq925:hidden flex items-center justify-center gap-2">
-      {!jwt  ?(
-        <button className='btn' onClick={login}>Login</button>
-      ):(
-      <button className='btn' onClick={Signout}>Logout</button>
+
+    <div className="mq925:hidden flex items-center justify-center gap-7">
+
+    <div className='hover:cursor-pointer' onClick={()=>navigate('/checkout')}>
+    <SlHandbag className='text-yellow text-3xl' />
+        </div>
+
+        <div>
+      {!!Token ?(
+        <button className='btn' onClick={Signout}>Logout</button>
+        ):(
+          <button className='btn' onClick={login}>Login</button>
       )
     }
+        </div>
+
 
     </div>
 
-    <div className=" items-center justify-end mq1825:hidden mq1250:hidden mq925:flex ">
+    <div className="flex gap-5 items-center justify-end mq1825:hidden mq1250:hidden mq925:flex ">
+
+    <div className='hover:cursor-pointer' onClick={()=>navigate('/checkout:id')}>
+    <SlHandbag className='text-yellow text-5xl' />
+        </div>
+
       <button onClick={showDrawer} className="text-gray-600 hover:text-gray-800 focus:outline-none focus:text-gray-800">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -141,15 +157,15 @@ const NavBar = () => {
           </a>
         </div>
       ))}
-      <div className="">
-
-      {!jwt || !Token ?(
+        
+        <div>
+      {!!Token ?(
+        <button className='btn' onClick={Signout}>Logout</button>
+        ):(
         <button className='btn' onClick={login}>Login</button>
-      ):(
-      <button className='btn' onClick={Signout}>Logout</button>
       )
     }
-    </div>
+        </div>
     </Drawer>
     </ConfigProvider>
   </nav>

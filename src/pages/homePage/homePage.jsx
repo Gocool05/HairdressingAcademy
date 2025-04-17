@@ -25,9 +25,8 @@ const HomePage = () => {
   const [abtCard, setAbtCard] = useState([]);
   const [abtImage, setAbtImage] = useState([]);
   const [loading, setLoading] = useState(true);
-useEffect(() => {
-  Home();
-}, []);
+
+
 
 var isValid = cards && about && benifits && description && AbtDesc && abtCard;
 // console.log(isValid);
@@ -64,10 +63,12 @@ const Home = async() => {
       console.error(e);
     }
   }catch(err){
-
   }
- 
 }
+
+useEffect(() => {
+  Home();
+}, []);
 
   return (
     <>

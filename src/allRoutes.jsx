@@ -12,6 +12,7 @@ import Album from './pages/gallery/gallery'
 import Details from './components/Details'
 import Checkout from './components/Checkout'
 import MasterDetails from './components/MasterDetails'
+import ListOfvideo from './pages/onlineCourses/ListOfvideo'
 
 const jwt = localStorage.getItem("JwtToken");
 const AllRoutes = () => {
@@ -20,11 +21,6 @@ const AllRoutes = () => {
  <Routes>
     <Route path='/login' element={<Login/>}/>
     <Route path='/auth/google/callback' element={<GoogleCallBackAuth/>}/>
- {/* </Routes> */}
-    {/* </> */}
-  // ):(
-    {/* <> */}
-    {/* <Routes> */}
     <Route path='/' element={<HomePage/>}/>
     <Route path='/masterclass' element={<MasterClasses/>}/>
     <Route path='/onlineCourse' element={<OnlineCourse/>}/>
@@ -33,7 +29,8 @@ const AllRoutes = () => {
     <Route path='/gallery' element={<Album/>}/>
     <Route path='/contact' element={<Contact/>}/>
     <Route path='/myprofile' element={<MyProfile/>}/>
-    <Route path='/checkout/:id' element={<Checkout/>}/>
+    <Route path='/checkout' element={<Checkout/>}/>
+    <Route path='/individualCourse/:id' element={<ListOfvideo/>}/>
     </Routes>
     </>
   )

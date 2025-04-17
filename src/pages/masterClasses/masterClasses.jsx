@@ -49,7 +49,7 @@ const MasterClasses = () => {
       <div class="container flex flex-col items-center h-full py-20">
        <div class="flex flex-col gap-2 max-w-md text-center">
            <h1 class="font-extrabold text-[3rem] my-0 p-0 text-blue">
-             Currently No Masterclass is available
+             Currently Masterclass is Not available
            </h1>
            <a href="/" class="btn1">Back to home</a>
        </div>

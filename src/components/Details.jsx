@@ -18,6 +18,7 @@ const Details = () => {
   const [Desc, setDesc] = useState([]);
   const [image, setImage] = useState(null);
   const [video, setVideo] = useState(null);
+  const [previewVideo, setPreviewVideo] = useState(null);
   const [learn, setLearn] = useState([]);
   const [updatedAt, setUpdatedAt] = useState("");
   const [courseInCart, setCourseInCart] = useState(false);
@@ -44,20 +45,25 @@ if(localStorage.getItem('redirectToCart')){
 
   const { data: cart } = useQuery("Cart", User);
 
-  // console.log(cart, "Users details");
- 
+  console.log(cart, "Users details");
+  const isContentInCart = cart?.course_contents?.some(item => item.id == id);
+  // console.log(isContentInCart,'isContentInCart')
+  useEffect(() => {
+  }, [isContentInCart]);
+
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        `${API_URL}/api/courses/${id}?populate=*`
+        `${API_URL}/api/course-contents/${id}?populate[content][populate][0]=Cover&populate[content][populate][1]=courseVideo&populate=PreviewVideo`
       );
       const responseData = response.data.data;
       setCourse(responseData.attributes);
       console.log("course details ",response.data);
-      setLearn(response.data.data.attributes.WhatYouWillLearn);
-      setDesc(response.data.data.attributes.Description);
-      setImage(response.data.data.attributes.CourseImage.data.attributes.url);
-      setVideo(response.data.data.attributes.PreviewVideo.data.attributes.url);
+      setLearn(response.data.data.attributes.content.WhatYouWillLearn);
+      setDesc(response.data.data.attributes.content.Description);
+      setImage(response.data.data.attributes.content.Cover.data.attributes.url);
+      setVideo(response.data.data.attributes.content.courseVideo.data.attributes.url);
+      setPreviewVideo(response.data.data.attributes.PreviewVideo.data.attributes.url)
       setUpdatedAt(response.data.data.attributes.updatedAt);
       localStorage.removeItem("redirectToCart");
     } catch (err) {
@@ -67,36 +73,21 @@ if(localStorage.getItem('redirectToCart')){
   
   const addToCart = async () => {
     if (JWT) {
-      if (cart) {
         try {
           const response = await axios.put(`${API_URL}/api/carts/${cart.id}`, {
             data: {
-              courses: {
+              course_contents: {
                 connect: [id],
               },
             },
           });
+          console.log(response,'addtocart')
+
           // console.log(response, "cartUpdated");
           queryClient.invalidateQueries("Cart");
         } catch (err) {
           console.error(err);
         }
-      } else {
-        try {
-          const response = await axios.post(`${API_URL}/api/carts`, {
-            data: {
-              courses: {
-                connect: [id],
-              },
-              user: userId,
-            },
-          });
-          queryClient.invalidateQueries("Cart");
-          // console.log(response, "cartCreated");
-        } catch (err) {
-          console.error(err);
-        }
-      }
     } else {
       localStorage.setItem("redirectToCart", window.location.pathname);
       navigate("/login");
@@ -112,10 +103,11 @@ if(localStorage.getItem('redirectToCart')){
       );
       
       const anyLiked = isLiked.includes(true);
+
       if (anyLiked) {
         queryClient.invalidateQueries("Cart");
         setCourseInCart(true);
-        // console.log("courseincart", courseInCart);
+        console.log("courseincart", courseInCart);
       }
     } else {
       console.log("Cart is empty");
@@ -144,7 +136,7 @@ if(localStorage.getItem('redirectToCart')){
     "LessonPlan",
     LessonPlan
   );
-  console.log(lessonPlan, "LessonPlan");
+  // console.log(lessonPlan, "LessonPlan");
 
   const isPurchased = () => {
     if (
@@ -198,7 +190,6 @@ if(localStorage.getItem('redirectToCart')){
   };
 
 
-
   useEffect(() => {
     fetchData();
   }, [id]);
@@ -231,7 +222,7 @@ if(localStorage.getItem('redirectToCart')){
       <NavBar />
       <div className="w-full  bg-liteBlue flex flex-row items-start justify-center py-0 pb-20 px-5 box-border leading-[normal] tracking-[normal]">
         <section className="w-[1320px] flex flex-col items-start justify-start   max-w-[1320px] text-left text-xl  mq800:gap-[22px] mq1250:max-w-full">
-          <h1 className="text-gray1 pl-3">{course.CourseName}</h1>
+          <h1 className="text-gray1 pl-3">{course.Name}</h1>
           <div className="ml-[-12px] w-[1344px] flex flex-row mq925:flex-col items-start gap-12 justify-start max-w-[102%] shrink-0 mq1150:flex-wrap">
            
           <div className="flex flex-col items-start justify-start py-0 pl-6 box-border min-w-[60%] mq800:min-w-full mq450:gap-[16px] gap-[31px] mq1350:max-w-full">
@@ -253,8 +244,6 @@ if(localStorage.getItem('redirectToCart')){
                     alt=""
                     src={`${API_URL}${image}`}
                   />
-                  {/* {isBought ? ( */}
-
                     <button
                       className="absolute rounded-[50%] p-3 bg-gray1 cursor-pointer top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
                       onClick={() => handlePreviewPlay()}
@@ -274,27 +263,7 @@ if(localStorage.getItem('redirectToCart')){
                         />
                       </svg>
                     </button>
-             {/* ) : (
-                  <button
-                      className="absolute rounded-[50%] p-3 bg-gray1 top-1/2 left-1/2 cursor-pointer transform -translate-x-1/2 -translate-y-1/2"
-                      onClick={() => handlePlay(video)}
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        strokeWidth={1.5}
-                        stroke="currentColor"
-                        className="w-10 text-white"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z"
-                        />
-                      </svg>
-                    </button> 
-                   )}  */}
+  
                 </div>
               )}
             </div>
@@ -366,13 +335,13 @@ if(localStorage.getItem('redirectToCart')){
                     <div className="self-stretch h-[38.4px] flex flex-row items-end justify-start pt-0 px-0 pb-0 box-border">
                       <div className="flex flex-col items-start justify-start pt-0 px-0 pb-[0.7px]">
                         <b className="relative text-white leading-[39px] inline-block min-w-[76px] whitespace-nowrap mq450:text-lgi mq450:leading-[31px]">
-                          ₹ {course.Price}
+                          ₹ {course?.content?.Price}
                         </b>
                       </div>
                     </div>
-                    {courseInCart ? (
+                    {isContentInCart ? (
                       <Link
-                        to={"/checkout/" + cart.id}
+                        to={"/checkout"}
                         className="no-underline"
                       >
                         {" "}
@@ -417,7 +386,7 @@ if(localStorage.getItem('redirectToCart')){
                       </div>
                       <div className="flex-1 flex flex-col items-start justify-start min-w-[149px]">
                         <div className="relative leading-[26px]">
-                        English subtitles are included
+                        Video Available in Hindi
                         </div>
                       </div>
                     </div>
@@ -438,66 +407,7 @@ if(localStorage.getItem('redirectToCart')){
                   </div>
                 </div>
               </div>
-
-              <div className="self-stretch  flex flex-col items-start bg-blue justify-start max-w-full text-base text-blue">
-                <h2 className="px-5 m-0 mt-3 text-white">Lesson Plan</h2>
-                      {lessonPlan && lessonPlan.map((plan, index)=>(
-                <ul class="m-0 px-5 py-2 list-none min-w-[90%]" key={index}>
-                  <li className="drop-shadow-2xl bg-liteBlue mb-2  ">
-                    <details class="group">
-                      <summary class="flex items-center gap-3 px-4 py-3 justify-between font-medium marker:content-none hover:cursor-pointer">
-                        <span>{plan.Topic}</span>
-                        <span class="transition group-open:rotate-180">
-                          <svg
-                            className="h-6 "
-                            fill="none"
-                            height="24"
-                            shape-rendering="geometricPrecision"
-                            stroke="currentColor"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="1.5"
-                            viewBox="0 0 24 24"
-                            width="24"
-                          >
-                            <path d="M6 9l6 6 6-6"></path>
-                          </svg>
-                        </span>
-                      </summary>
-
-                      <article class="px-4 pb-4 flex">
-                        <img
-                        key={plan.id}
-                          className="w-full h-[200px] rounded-2xl opacity-95 mq925:aspect-video mq925:h-[200px] relative  object-cover"
-                          alt=""
-                          src={`${API_URL}${plan.Cover.data.attributes.url}`}
-                          onClick={()=>handlePlay(plan.courseVideo.data.attributes.url)}
-                        />
-                        <div className="absolute flex bottom- p-2  z-50 bg-gray1  rounder-lg text-white gap-1 justify-center items-center text-center ">
-                          <div className="justify-center items-center text-center ">
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              viewBox="0 0 24 24"
-                              fill="currentColor"
-                              className="w-6 h-6"
-                            >
-                              <path
-                                fillRule="evenodd"
-                                d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25ZM12.75 6a.75.75 0 0 0-1.5 0v6c0 .414.336.75.75.75h4.5a.75.75 0 0 0 0-1.5h-3.75V6Z"
-                                clipRule="evenodd"
-                              />
-                            </svg>
-                          </div>
-                          <div className=" font-semibold justify-center items-center mb-1 text-center  ">
-                           {plan.TimeStamp.substring(0,5)}
-                          </div>
-                        </div>
-                      </article>
-                    </details>
-                  </li>
-                </ul>
-                      ))}
-              </div>
+              
             </div>
           </div>
         </section>
