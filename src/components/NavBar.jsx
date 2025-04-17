@@ -96,7 +96,7 @@ const NavBar = () => {
 
     <div className="flex gap-5 items-center justify-end mq1825:hidden mq1250:hidden mq925:flex ">
 
-    <div className='hover:cursor-pointer' onClick={()=>navigate('/checkout:id')}>
+    <div className='hover:cursor-pointer' onClick={()=>navigate('/checkout')}>
     <SlHandbag className='text-yellow text-5xl' />
         </div>
 
