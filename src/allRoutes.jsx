@@ -13,15 +13,11 @@ import Details from './components/Details'
 import Checkout from './components/Checkout'
 import MasterDetails from './components/MasterDetails'
 import ListOfvideo from './pages/onlineCourses/ListOfvideo'
-import GoogleTranslate from './language/GoogleTranslate'
 
 const jwt = localStorage.getItem("JwtToken");
 const AllRoutes = () => {
-
-  
   return(
     <>
-    <GoogleTranslate/>
  <Routes>
     <Route path='/login' element={<Login/>}/>
     <Route path='/auth/google/callback' element={<GoogleCallBackAuth/>}/>
