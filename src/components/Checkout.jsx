@@ -47,7 +47,7 @@ const Checkout = () => {
   });
   // queryClient.invalidateQueries("cartData");
 
-  // console.log(carts,'CARTS')
+  console.log(carts,'CARTS')
 
   const calculateTotalPrice = () => {
     let total = 0;

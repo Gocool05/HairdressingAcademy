@@ -73,6 +73,7 @@ if(localStorage.getItem('redirectToCart')){
   
   const addToCart = async () => {
     if (JWT) {
+      if(cart){
         try {
           const response = await axios.put(`${API_URL}/api/carts/${cart.id}`, {
             data: {
@@ -88,6 +89,22 @@ if(localStorage.getItem('redirectToCart')){
         } catch (err) {
           console.error(err);
         }
+      }else{
+        try {
+          const response = await axios.post(`${API_URL}/api/carts`, {
+            data: {
+              course_contents: {
+                connect: [id],
+              },
+              user: userId,
+            },
+          });
+          queryClient.invalidateQueries("Cart");
+          // console.log(response, "cartCreated");
+        } catch (err) {
+          console.error(err);
+        }
+      }
     } else {
       localStorage.setItem("redirectToCart", window.location.pathname);
       navigate("/login");
@@ -276,9 +293,9 @@ if(localStorage.getItem('redirectToCart')){
                   </h2>
                 </div>
                 <div className="self-stretch flex flex-col items-start justify-start pt-0 pb-[0.8px] pl-0 text-base text-gray1">
-                  {Desc.map((desc, index) => (
+                  {Desc?.map((desc, index) => (
                     <div key={index} className="self-stretch flex flex-row items-start justify-start shrink-0">
-                      {desc.children.map((child, index) => (
+                      {desc?.children?.map((child, index) => (
                         <span className="m-0   flex items-center justify-center ">
                           <Scissor1/>
                            <p className="my-0 " key={index}>
@@ -298,13 +315,13 @@ if(localStorage.getItem('redirectToCart')){
                 </div>
                 <div className="self-stretch flex flex-col items-start justify-start pt-0 pb-[0.8px] pr-[3px] pl-0 text-base text-gray1">
                   {learn &&
-                    learn.map((L, index) => (
+                    learn?.map((L, index) => (
                       <div key={index} className="self-stretch flex flex-row items-start justify-start shrink-0">
-                        {L.children.map((child, index) => (
+                        {L?.children?.map((child, index) => (
                         <span className="m-0  flex items-center justify-center ">
                         <Scissor1/>
                          <p className="my-0 " key={index}>
-                        {child.text}
+                        {child?.text}
                       </p>
                         </span>
                         ))}
@@ -372,7 +389,7 @@ if(localStorage.getItem('redirectToCart')){
                       </div>
                       <div className="flex flex-col items-start justify-start">
                         <div className="relative leading-[26px] inline-block min-w-[69px]">
-                        {course.CourseName}
+                        {course?.CourseName}
                         </div>
                       </div>
                     </div>

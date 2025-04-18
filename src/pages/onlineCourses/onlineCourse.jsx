@@ -9,7 +9,7 @@ import './onlineCourse.css'
 
 const API_URL = process.env.REACT_APP_API_URL
 let JWT = localStorage.getItem('JwtToken')
-let id = localStorage.getItem('UserId')
+let userId = localStorage.getItem('UserId')
 
 const OnlineCourse = () => {
   const queryClient = useQueryClient();
@@ -36,7 +36,7 @@ const OnlineCourse = () => {
 
   const getCartId = async () => {
     const response = await axios.get(
-      `${API_URL}/api/users/${id}?populate=*`
+      `${API_URL}/api/users/${userId}?populate=*`
     )
     return response?.data
   }
@@ -56,9 +56,36 @@ const OnlineCourse = () => {
     enabled: !!cartId,
   });
 
+  console.log(carts,'Carts')
+
   const mutation = useMutation({
+
     mutationFn: async () => {
-      return await axios.post(`${API_URL}/api/cart/course/1/combo-course`, {}, option1);
+      if(carts){
+        try{
+          const res= await axios.post(`${API_URL}/api/cart/course/1/combo-course`, {}, option1);
+          console.log(res,'Res')
+          return res;
+        }
+        catch(error) {
+          console.error(error);
+        }
+      }else{
+        try {
+          const response = await axios.post(`${API_URL}/api/carts`, {
+            data: {
+              combo_package: {
+                connect: null,
+              },
+              user: userId,
+            },
+          });
+          queryClient.invalidateQueries("Cart");
+          // console.log(response, "cartCreated");
+        } catch (err) {
+          console.error(err);
+        }
+      }
     },
     onSuccess: () => {
       queryClient.invalidateQueries(['cartData']); // ✅ force re-fetch fresh cart data
@@ -70,12 +97,12 @@ const OnlineCourse = () => {
 
   const handleAddToCart = () => {
     // If cart already has the combo package, navigate directly
-    if (carts?.attributes?.combo_package?.data !== null) {
-      navigate('/checkout'); // ✅ Your cart page route
-    } else {
+    // if (carts?.attributes?.combo_package?.data !== null || carts?.attributes?.combo_package?.data !== undefined) {
+    //   navigate('/checkout'); // ✅ Your cart page route
+    // } else {
       mutation.mutate(); // ✅ Add to cart
       queryClient.invalidateQueries(['cartData']);
-    }
+    // }
   };
 
   const FAQ = async () => {
@@ -127,7 +154,7 @@ const OnlineCourse = () => {
           onClick={handleAddToCart}
           disabled={mutation.isLoading}
         >
-          {carts?.attributes?.combo_package?.data !== null
+          {carts?.attributes?.combo_package?.data !== null || carts?.attributes?.combo_package?.data !== undefined
             ? "View Cart"
             : mutation.isLoading
             ? "Adding..."

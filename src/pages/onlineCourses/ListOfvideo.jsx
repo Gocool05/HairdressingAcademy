@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import { QueryClient, useMutation, useQuery } from 'react-query';
+import { QueryClient, useMutation, useQuery, useQueryClient } from 'react-query';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import Footer from '../../components/Footer'
 import NavBar from '../../components/NavBar'
@@ -12,7 +12,7 @@ const userId = localStorage.getItem("UserId");
 const ListOfvideo = () => {
     
 
-    
+  const queryClient = useQueryClient();
     const { id } = useParams();
     const [CourseData, setCourseData] = useState(null);
     const navigate = useNavigate();
@@ -63,20 +63,40 @@ const {
   enabled: !!cartId,
 });
 console.log(carts,'Cartdata')
+
+
 const mutation = useMutation({
   mutationFn: async () => {
-    try {
-     const res =  await axios.put(`${API_URL}/api/carts/${cartId}`,{
-      data: {
-        courses: {
-          connect: [id],
-        },
-      },
-     },option1);
-      console.log(res, 'response of add to cart');
-    } catch (error) {
-      console.error(error);
+    if(carts){
+      try {
+        const res =  await axios.put(`${API_URL}/api/carts/${cartId}`,{
+         data: {
+           courses: {
+             connect: [id],
+           },
+         },
+        },option1);
+         console.log(res, 'response of add to cart');
+       } catch (error) {
+         console.error(error);
+       }
+    } else {
+      try {
+        const response = await axios.post(`${API_URL}/api/carts`, {
+          data: {
+            courses: {
+              connect: [id],
+            },
+            user: userId,
+          },
+        });
+        queryClient.invalidateQueries("Cart");
+        // console.log(response, "cartCreated");
+      } catch (err) {
+        console.error(err);
+      }
     }
+   
   },
 })
 
