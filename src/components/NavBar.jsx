@@ -49,6 +49,9 @@ const NavBar = () => {
     setDrawerVisible(false);
   };
 
+  useEffect(()=>{
+
+  },[Token])
 
   const Global = async() => {
     const response = await axios.get(`${API_URL}/api/global?populate[navigation][populate]=*`);

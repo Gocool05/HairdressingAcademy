@@ -1,5 +1,5 @@
-import React from 'react'
-import { Route, Routes } from 'react-router-dom'
+import React, { useEffect } from 'react'
+import { Route, Routes, useLocation } from 'react-router-dom'
 import Blogs from './pages/blogs/blogs'
 import HomePage from './pages/homePage/homePage'
 import MasterClasses from './pages/masterClasses/masterClasses'
@@ -16,6 +16,27 @@ import ListOfvideo from './pages/onlineCourses/ListOfvideo'
 
 const jwt = localStorage.getItem("JwtToken");
 const AllRoutes = () => {
+
+
+  const location = useLocation();
+
+  useEffect(() => {
+    const resetGoogleTranslate = () => {
+      const select = document.querySelector('.goog-te-combo');
+      if (select && select.selectedIndex !== 0) {
+        select.value = 'en';
+        select.dispatchEvent(new Event('change'));
+      }
+    };
+
+    // Run after slight delay to make sure Google Translate has injected the dropdown
+    const timeout = setTimeout(() => {
+      resetGoogleTranslate();
+    }, 1000);
+
+    return () => clearTimeout(timeout);
+  }, [location.pathname]);
+
   return(
     <>
  <Routes>

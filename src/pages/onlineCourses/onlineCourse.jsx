@@ -12,11 +12,18 @@ let JWT = localStorage.getItem('JwtToken')
 let userId = localStorage.getItem('UserId')
 
 const OnlineCourse = () => {
+
+  if(localStorage.getItem('redirectToCart')){
+    localStorage.removeItem('redirectToCart')
+    window.location.reload();
+  }
+  
   const queryClient = useQueryClient();
   const [faq, setFaq] = useState([])
   const [courseCard, setCourseCard] = useState([])
   const [courseCardContent, setCourseCardContent] = useState([])
   const [headerBottom, setHeaderBottom] = useState([])
+  const [combo,setCombo]= useState(false);
   const navigate = useNavigate()
 
   const option1 = {
@@ -38,7 +45,8 @@ const OnlineCourse = () => {
     const response = await axios.get(
       `${API_URL}/api/users/${userId}?populate=*`
     )
-    return response?.data
+    console.log(response?.data?.cart?.id,'response?.data')
+    return response?.data?.cart?.id
   }
 
   const { data: cartId } = useQuery('cartId', getCartId)
@@ -47,6 +55,8 @@ const OnlineCourse = () => {
     const response = await axios.get(
       `${API_URL}/api/carts/${Number(cartId)}?populate=combo_package.ComboImage,course_contents.content,course_contents.content.Cover`
     )
+    console.log(response?.data?.data,'response?.data?.data');
+    setCombo(response?.data?.data?.attributes?.combo_package?.data)
     return response?.data?.data
   }
 
@@ -55,36 +65,38 @@ const OnlineCourse = () => {
   } = useQuery('cartData', getCart, {
     enabled: !!cartId,
   });
-
   console.log(carts,'Carts')
 
   const mutation = useMutation({
 
     mutationFn: async () => {
-      if(carts){
-        try{
-          const res= await axios.post(`${API_URL}/api/cart/course/1/combo-course`, {}, option1);
-          console.log(res,'Res')
-          return res;
-        }
-        catch(error) {
-          console.error(error);
+      if(JWT){
+        if(carts){
+          try{
+            const res= await axios.post(`${API_URL}/api/cart/course/1/combo-course`, {}, option1);
+            console.log(res,'Res')
+            return res;
+          }
+          catch(error) {
+            console.error(error);
+          }
+        }else{
+          try {
+            const response = await axios.post(`${API_URL}/api/carts`, {
+              data: {
+                combo_package:1,
+                user: userId,
+              },
+            });
+            queryClient.invalidateQueries("Cart");
+            // console.log(response, "cartCreated");
+          } catch (err) {
+            console.error(err);
+          }
         }
       }else{
-        try {
-          const response = await axios.post(`${API_URL}/api/carts`, {
-            data: {
-              combo_package: {
-                connect: null,
-              },
-              user: userId,
-            },
-          });
-          queryClient.invalidateQueries("Cart");
-          // console.log(response, "cartCreated");
-        } catch (err) {
-          console.error(err);
-        }
+          localStorage.setItem("redirectToCart", window.location.pathname);
+          navigate("/login");
       }
     },
     onSuccess: () => {
@@ -97,12 +109,12 @@ const OnlineCourse = () => {
 
   const handleAddToCart = () => {
     // If cart already has the combo package, navigate directly
-    // if (carts?.attributes?.combo_package?.data !== null || carts?.attributes?.combo_package?.data !== undefined) {
-    //   navigate('/checkout'); // ✅ Your cart page route
-    // } else {
+    if (combo) {
+      navigate('/checkout'); // ✅ Your cart page route
+    } else {
       mutation.mutate(); // ✅ Add to cart
       queryClient.invalidateQueries(['cartData']);
-    // }
+    }
   };
 
   const FAQ = async () => {
@@ -154,11 +166,11 @@ const OnlineCourse = () => {
           onClick={handleAddToCart}
           disabled={mutation.isLoading}
         >
-          {carts?.attributes?.combo_package?.data !== null || carts?.attributes?.combo_package?.data !== undefined
-            ? "View Cart"
+          {!combo
+            ? "Add to Cart"
             : mutation.isLoading
             ? "Adding..."
-            : "Add to cart"}
+            : "View Cart"}
         </button>
         </div>
       </div>

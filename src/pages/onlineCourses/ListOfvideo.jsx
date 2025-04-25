@@ -10,7 +10,12 @@ const userId = localStorage.getItem("UserId");
 
 
 const ListOfvideo = () => {
-    
+
+
+  if(localStorage.getItem('redirectToCart')){
+    localStorage.removeItem('redirectToCart')
+    window.location.reload();
+  }
 
   const queryClient = useQueryClient();
     const { id } = useParams();
@@ -67,48 +72,54 @@ console.log(carts,'Cartdata')
 
 const mutation = useMutation({
   mutationFn: async () => {
-    if(carts){
-      try {
-        const res =  await axios.put(`${API_URL}/api/carts/${cartId}`,{
-         data: {
-           courses: {
-             connect: [id],
+    if(JWT){
+      if(carts){
+        try {
+          const res =  await axios.put(`${API_URL}/api/carts/${cartId}`,{
+           data: {
+             courses: {
+               connect: [id],
+             },
            },
-         },
-        },option1);
-         console.log(res, 'response of add to cart');
-       } catch (error) {
-         console.error(error);
-       }
-    } else {
-      try {
-        const response = await axios.post(`${API_URL}/api/carts`, {
-          data: {
-            courses: {
-              connect: [id],
+          },option1);
+           console.log(res, 'response of add to cart');
+         } catch (error) {
+           console.error(error);
+         }
+      } else {
+        try {
+          const response = await axios.post(`${API_URL}/api/carts`, {
+            data: {
+              courses: {
+                connect: [id],
+              },
+              user: userId,
             },
-            user: userId,
-          },
-        });
-        queryClient.invalidateQueries("Cart");
-        // console.log(response, "cartCreated");
-      } catch (err) {
-        console.error(err);
+          });
+          queryClient.invalidateQueries("Cart");
+          // console.log(response, "cartCreated");
+        } catch (err) {
+          console.error(err);
+        }
       }
+    }else {
+      localStorage.setItem("redirectToCart", window.location.pathname);
+      navigate("/login");
     }
    
   },
 })
 
 const isCourseInCart = carts?.attributes?.courses?.data?.some(item => item.id == id);
-console.log(isCourseInCart,'isCourseInCart')
+// console.log(isCourseInCart,'isCourseInCart')
 
 useEffect(() => {
 }, [isCourseInCart,carts]);
 
 
 const handleAddToCart = () => {
-  mutation.mutate();
+    mutation.mutate(); // ✅ Add to cart
+    queryClient.invalidateQueries(['cartData']);
 };
 
 const LessonPlan = async() =>{

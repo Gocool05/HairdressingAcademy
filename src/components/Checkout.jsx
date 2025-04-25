@@ -72,24 +72,25 @@ const Checkout = () => {
     }
   }, [carts]);
 
-  const removeCartItem = async (courseId, isCombo = false) => {
+  const removeCartItem = async (itemId, type = "course") => {
     const existingCourses = carts?.attributes?.courses?.data?.map(c => c.id) || [];
     const existingCourseContents = carts?.attributes?.course_contents?.data?.map(c => c.id) || [];
     const existingCombo = carts?.attributes?.combo_package?.data?.id || null;
   
-    if (isCombo) {
+    let updatedCourses = existingCourses;
+    let updatedCourseContents = existingCourseContents;
+  
+    if (type === "combo") {
       await axios.put(`${API_URL}/api/carts/${cartId}`, {
         data: {
           user: userId,
-          combo_package: null,
-          // Preserve other fields
+          combo_package:null,
           courses: existingCourses,
           course_contents: existingCourseContents,
         },
       });
-    } else if (existingCourses.includes(courseId)) {
-      // Removing a course
-      const updatedCourses = existingCourses.filter(id => id !== courseId);
+    } else if (type === "course") {
+      updatedCourses = existingCourses.filter(id => id !== itemId);
       await axios.put(`${API_URL}/api/carts/${cartId}`, {
         data: {
           user: userId,
@@ -98,9 +99,8 @@ const Checkout = () => {
           combo_package: existingCombo,
         },
       });
-    } else {
-      // Removing a course_content
-      const updatedCourseContents = existingCourseContents.filter(id => id !== courseId);
+    } else if (type === "content") {
+      updatedCourseContents = existingCourseContents.filter(id => id !== itemId);
       await axios.put(`${API_URL}/api/carts/${cartId}`, {
         data: {
           user: userId,
@@ -110,8 +110,10 @@ const Checkout = () => {
         },
       });
     }
+  
     queryClient.invalidateQueries("cartData");
   };
+  
   
 
   const handlePayment = async (e) => {
@@ -205,7 +207,7 @@ const Checkout = () => {
                               <p className="my-1">{cart?.attributes?.content?.Topic}</p>
                             </div> */}
                             <div className="cart-item-actions">
-                              <button className="btn" onClick={() => removeCartItem(cart.id)}>Remove item</button>
+                              <button className="btn" onClick={() => removeCartItem(cart.id,'content')}>Remove item</button>
                             </div>
                           </div>
                         </td>
@@ -230,7 +232,7 @@ const Checkout = () => {
                               <p className="my-1">{cart?.attributes?.CourseName}</p>
                             </div> */}
                             <div className="cart-item-actions">
-                              <button className="btn" onClick={() => removeCartItem(cart.id)}>Remove item</button>
+                              <button className="btn" onClick={() => removeCartItem(cart.id,'course')}>Remove item</button>
                             </div>
                           </div>
                         </td>
@@ -256,7 +258,7 @@ const Checkout = () => {
                               <p className="my-1">Access to all the courses</p>
                             </div>
                             <div className="cart-item-actions">
-                              <button className="btn" onClick={() => removeCartItem(null, true)}>Remove item</button>
+                              <button className="btn" onClick={() => removeCartItem(null, "combo")}>Remove item</button>
                             </div>
                           </div>
                         </td>
