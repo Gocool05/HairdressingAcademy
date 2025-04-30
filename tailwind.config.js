@@ -58,6 +58,9 @@ module.exports = {
       inherit: "inherit",
     },
     screens: {
+      mq1826: {
+        raw: "screen and (min-width: 1826px)",
+      },
       mq1825: {
         raw: "screen and (max-width: 1825px)",
       },

@@ -62,6 +62,8 @@ const NavBar = () => {
 
 
   return (
+    <>
+   
     <nav className="  flex z-10 items-center justify-between mq450:justify-between py-1 mq1825:px-10 box-border mq450:px-5 text-center text-4xl text-darkslategray-200 font-cormorant-garamond text-lg bg-[#053576]">
     <div className="flex  items-center justify-start gap-8 max-w-full">
       <img className='h-16 py-2 w-auto' src='https://api.ihfbyjavedkhan.com/uploads/ihf_logo_590d48d82a.png'/>
@@ -97,13 +99,13 @@ const NavBar = () => {
 
     </div>
 
-    <div className="flex gap-5 items-center justify-end mq1825:hidden mq1250:hidden mq925:flex ">
+    <div className="flex gap-5 items-center justify-end mq1825:hidden mq1250:hidden mq1826:hidden mq925:flex ">
 
     <div className='hover:cursor-pointer' onClick={()=>navigate('/checkout')}>
     <SlHandbag className='text-yellow text-5xl' />
         </div>
 
-      <button onClick={showDrawer} className="text-gray-600 hover:text-gray-800 focus:outline-none focus:text-gray-800">
+      {/* <button onClick={showDrawer} className="text-gray-600 hover:text-gray-800 focus:outline-none focus:text-gray-800">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="h-6 w-6"
@@ -118,10 +120,19 @@ const NavBar = () => {
             d={drawerVisible ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"}
           />
         </svg>
-      </button>
+      </button> */}
+            <div>
+      {!!Token ?(
+        <button className='btn' onClick={Signout}>Logout</button>
+        ):(
+          <button className='btn' onClick={login}>Login</button>
+      )
+    }
+        </div>
     </div>
 
-<ConfigProvider 
+
+{/* <ConfigProvider 
    theme={{
     token:{
       colorPrimary: '#17191c',
@@ -170,8 +181,20 @@ const NavBar = () => {
     }
         </div>
     </Drawer>
-    </ConfigProvider>
+    </ConfigProvider> */}
   </nav>
+  <div className="mq925:flex flex-wrap  mq1250:hidden mq1825:hidden mq1826:hidden  bg-blue">
+      {navLinks && navLinks.map((nav) => (
+        <ul key={nav.id} className=" my-1  list-none text-yellow ">
+          <li>
+          <a onClick={() => { navigate(`${nav.href}`) }}>
+            {nav.label}
+          </a>
+          </li>
+        </ul>
+      ))}
+    </div>
+  </>
   );
 }
 
